@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,42 @@
     <title>Buzz Quizz</title>
 </head>
 <body>
-    <div class="teste">Testando...</div>
+    <header>
+        BuzzQuizz
+    </header>
+
+    <div class="lista-de-quizzes">
+        <div class="titulo-seus-quizzes">
+            <span>Seus Quizzes</span>
+            <ion-icon onclick="adicionarQuizz()" name="add-circle"></ion-icon>
+        </div>
+        <ul class="seus-quizzes">
+            <li class="cartao-quizz">
+                <span>Você não criou nenhum quizz ainda :(</span>
+                <button onclick="adicionarQuizz()">Criar Quizz</button>
+            </li>
+            <li class="cartao-quizz">
+                <span>O quão Potterhead é você?</span>
+            </li>
+        </ul>
+
+        <div class="titulo-seus-quizzes">
+            <span>Todos os Quizzes</span>
+        </div>
+        <ul class="todos-os-quizzes">
+            <li class="cartao-quizz">
+                <span>Acerte os personagens corretos dos Simpsons e prove seu amor!</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="pagina-de-um-quizz escondido">
+    </div>
+
+    <div class="criacao-de-quizz escondido">
+    </div>
+
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="./js/scripts.js"></script>
 </body>
 </html>
