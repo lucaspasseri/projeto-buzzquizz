@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
+<head></head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/estilos.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
     <title>Buzz Quizz</title>
 </head>
 <body>
@@ -13,7 +17,7 @@
         BuzzQuizz
     </header>
 
-    <div class="lista-de-quizzes">
+    <div class="lista-de-quizzes escondido">
         <div class="titulo-seus-quizzes">
             <span>Seus Quizzes</span>
             <ion-icon onclick="adicionarQuizz()" name="add-circle"></ion-icon>
@@ -38,7 +42,58 @@
         </ul>
     </div>
 
-    <div class="pagina-de-um-quizz escondido">
+    <div class="pagina-de-um-quizz">
+        <div class="banner-titulo-quizz">
+            O quão Potterhead é você?
+        </div>
+        <ul class="lista-perguntas-quizz">
+            <li class="pergunta-quizz">
+                <div class="titulo-quizz">
+                    Em qual animal Olho-Tonto Moody transfigurou Malfoy?
+                </div>
+                <div class="container-opcoes-quizz">
+                    <div class="pergunta-quizz-opcao">
+                        <img src="./gato-para-teste.jpg" alt="Gato">
+                        Gatíneo
+                    </div>
+                    <div class="pergunta-quizz-opcao">
+                        <img src="./gato-para-teste.jpg" alt="Gato">
+                        Ratata
+                    </div>
+                    <div class="pergunta-quizz-opcao">
+                        <img src="./gato-para-teste.jpg" alt="Gato">
+                        Sapo gordo
+                    </div>
+                    <div class="pergunta-quizz-opcao">
+                        <img src="./gato-para-teste.jpg" alt="Gato">
+                        Mustela putorius (o Furão)
+                    </div>
+                </div>
+            </li>
+            <li class="pergunta-quizz">
+                <div class="titulo-quizz">
+                    Qual dos objetos abaixo NÃO é uma horcrux?
+                </div>
+                <div class="container-opcoes-quizz">
+                    <div class="pergunta-quizz-opcao">
+                        <img src="./gato-para-teste.jpg" alt="Gato">
+                        The boy who lived
+                    </div>
+                    <div class="pergunta-quizz-opcao">
+                        <img src="./gato-para-teste.jpg" alt="Gato">
+                        O livro monstruoso dos monstros
+                    </div>
+                    <div class="pergunta-quizz-opcao">
+                        <img src="./gato-para-teste.jpg" alt="Gato">
+                        Anel velho
+                    </div>
+                    <div class="pergunta-quizz-opcao">
+                        <img src="./gato-para-teste.jpg" alt="Gato">
+                        Diadema da Ravenclaw
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 
     <div class="criacao-de-quizz escondido">
