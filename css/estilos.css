@@ -1,3 +1,88 @@
 .escondido {
     display: none;
 }
+
+body {
+    font-family: 'Roboto';
+    background-color: #FAFAFA;
+}
+
+header {
+    width: 100%;
+    height: 69px;
+    background-color: #EC362D;
+    color: #FFFFFF;
+    font-size: 37px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.pagina-de-um-quizz {
+    margin-top: 69px;
+}
+
+.banner-titulo-quizz {
+    width: 100%;
+    height: 142px;
+    background: url("https://images.ctfassets.net/usf1vwtuqyxm/7EsDSrJhr0pNwUNK8lrUwY/f8d7e5101de6dda8f46c0f94673087a9/HP-Hogwarts-39PHOTOBU17074_PHUP_HP.jpg");
+    opacity: 0.6;
+    background-position-y: 30%;
+    background-size: cover;
+    color: #FFFFFF;
+    font-size: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lista-perguntas-quizz {
+    margin-top: 24px;
+}
+
+.pergunta-quizz {
+    width: 100%;
+    padding: 18px 18px 8px 18px;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
+    margin-top: 28px;
+}
+
+.titulo-quizz {
+    width: 100%;
+    height: 89px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 19px;
+    color: #FFFFFF;
+    background-color: #434CA0;
+    margin-bottom: 12px;
+}
+
+.container-opcoes-quizz {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.pergunta-quizz-opcao {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    width: 163px;
+}
+
+.pergunta-quizz-opcao img {
+    width: 163px;
+    height: 113px;
+    margin-bottom: 5px;
+}
