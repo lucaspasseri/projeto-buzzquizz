@@ -42,7 +42,7 @@
         </ul>
     </div>
 
-    <div class="pagina-de-um-quizz">
+    <div class="pagina-de-um-quizz escondido    ">
         <div class="banner-titulo-quizz">
             O quão Potterhead é você?
         </div>
@@ -96,8 +96,8 @@
         </ul>
     </div>
 
-    <div class="criacao-de-quizz escondido">
-        <div class="primeira-parte">
+    <div class="criacao-de-quizz">
+        <div class="primeira-parte escondido">
             <div class="apresentacao">Comece pelo começo</div>
             <ul>
                 <li><input type="text" placeholder="Título do seu quizz"></li>
@@ -107,19 +107,19 @@
             </ul>
             <button onclick="criarPerguntas()">Prosseguir para criar perguntas</button>
         </div>
-        <div class="segunda-parte escondido">
+        <div class="segunda-parte">
             <div class="apresentacao">Crie suas perguntas</div>
             <div><span>Pergunta 1</span></div>
-            <ul>
+            <ul class="pergunta-1">
                 <li><input type="text" placeholder="Texto da pergunta"></li>
                 <li><input type="text" placeholder="Cor de fundo da pergunta"></li>
+                <span>Resposta correta</span>
                 <ul>
-                    <span>Resposta correta</span>
                     <li><input type="text" placeholder="Resposta correta"></li>
                     <li><input type="text" placeholder="URL da imagem"></li>
                 </ul>
+                <span>Respostas incorretas</span>
                 <ul>
-                    <span>Respostas incorretas</span>
                     <li><input type="text" placeholder="Resposta incorreta 1"></li>
                     <li><input type="text" placeholder="URL da imagem 1"></li>
                     <li><input type="text" placeholder="Resposta incorreta 2"></li>

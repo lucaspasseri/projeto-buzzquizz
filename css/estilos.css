@@ -24,7 +24,7 @@ header {
     z-index: 1;
 }
 
-.pagina-de-um-quizz {
+.pagina-de-um-quizz, .lista-de-quizzes, .criacao-de-quizz {
     margin-top: 69px;
 }
 

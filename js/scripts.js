@@ -33,8 +33,34 @@ function validURL(str) {
   }
   
 function criarNiveis(){
+    const seletorInputs = document.querySelectorAll(".pergunta-1 input");
+    
+    const caracteresDaPergunta = seletorInputs[0].value.length > 19;
+    const hexCorDeFundo = isValidHex(seletorInputs[1].value);
+    const respostaCorreta = seletorInputs[2].value.trim().length !== 0;
 
-    let validacao = false;
+    let respostasIncorretas = false;
+    let indicesRespostaIncorretas = [];
+    for(let i = 4; i < 9; i+=2){ // intera entre as respostas incorretas {input(4,6,8)}
+      if(seletorInputs[i].value.trim().length !== 0){
+        indicesRespostaIncorretas.push(i);
+        respostasIncorretas = true;
+      }
+    }
+
+    let URLsValidas  = true;
+    let numeroURLsIncorretas = 0;
+    for(const i of indicesRespostaIncorretas){
+      URLsValidas = URLsValidas && validURL(seletorInputs[i+1].value);
+      numeroURLsIncorretas++;
+    }
+    URLsValidas = numeroURLsIncorretas && URLsValidas && validURL(seletorInputs[3].value);
+
+    console.log("respostasIncorretas:",respostasIncorretas);
+    console.log("indicesRespostaIncorretas:",indicesRespostaIncorretas);
+    console.log("URLsValidas:",URLsValidas);
+    const validacao = caracteresDaPergunta && hexCorDeFundo && respostaCorreta && respostasIncorretas 
+    && URLsValidas;
     if(validacao){
         const seletorSegundaParte = document.querySelector(".segunda-parte");
         seletorSegundaParte.classList.add("escondido");
@@ -42,6 +68,19 @@ function criarNiveis(){
         seletorTerceiraParte.classList.remove("escondido");
     }
 }
+function isValidHex(color) {
+    if(!color || typeof color !== 'string') return false;
+
+    // Validate hex values
+    if(color.substring(0, 1) === '#') color = color.substring(1);
+
+    switch(color.length) {
+      case 3: return /^[0-9A-F]{3}$/i.test(color);
+      case 6: return /^[0-9A-F]{6}$/i.test(color);
+      case 8: return /^[0-9A-F]{8}$/i.test(color);
+      default: return false;
+    }
+  }
 function finalizarQuizz(){
     const seletorTerceiraParte = document.querySelector(".terceira-parte");
     seletorTerceiraParte.classList.add("escondido");
