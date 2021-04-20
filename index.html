@@ -52,19 +52,19 @@
                     Em qual animal Olho-Tonto Moody transfigurou Malfoy?
                 </div>
                 <div class="container-opcoes-quizz">
-                    <div class="pergunta-quizz-opcao">
+                    <div class="pergunta-quizz-opcao correta" onclick="escolherResposta(this)">
                         <img src="./gato-para-teste.jpg" alt="Gato">
                         Gatíneo
                     </div>
-                    <div class="pergunta-quizz-opcao">
+                    <div class="pergunta-quizz-opcao errada" onclick="escolherResposta(this)">
                         <img src="./gato-para-teste.jpg" alt="Gato">
                         Ratata
                     </div>
-                    <div class="pergunta-quizz-opcao">
+                    <div class="pergunta-quizz-opcao errada" onclick="escolherResposta(this)">
                         <img src="./gato-para-teste.jpg" alt="Gato">
                         Sapo gordo
                     </div>
-                    <div class="pergunta-quizz-opcao">
+                    <div class="pergunta-quizz-opcao errada" onclick="escolherResposta(this)">
                         <img src="./gato-para-teste.jpg" alt="Gato">
                         Mustela putorius (o Furão)
                     </div>
@@ -209,8 +209,10 @@
             <div><span onclick="voltarPaginaInicial()">Voltar para home</span></div>
         </div>
     </div>
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="./js/scripts.js"></script>
+    <script src="./js/scriptsquizz.js"></script>
 </body>
 </html>

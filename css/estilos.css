@@ -93,6 +93,7 @@ header {
     font-weight: 700;
     margin-bottom: 15px;
     width: 163px;
+    cursor: pointer;
 }
 
 .pergunta-quizz-opcao img {
@@ -123,9 +124,11 @@ header {
     border: none;
     border-radius: 15px;
     margin-top: 34px;
+    cursor: pointer;
 }
 .pagina-de-um-quizz .voltar-home {
     color: #818181;
     font-size: 18px;
     margin: 20px 0;
+    cursor: pointer;
 }
