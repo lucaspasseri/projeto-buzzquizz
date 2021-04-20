@@ -2,6 +2,10 @@
     display: none;
 }
 
+.opaco {
+    opacity: 0.3;
+}
+
 body {
     font-family: 'Roboto';
     background-color: #FAFAFA;
@@ -66,6 +70,7 @@ header {
     height: 89px;
     display: flex;
     align-items: center;
+    justify-content: center;
     text-align: center;
     font-size: 19px;
     color: #FFFFFF;

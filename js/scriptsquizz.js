@@ -38,12 +38,22 @@ function renderizarQuizzUnico() {
     for (let i = 0; i < arrayQuizzUnico.questions.length; i++) {
         elementoContainerOpcoesQuizz.innerHTML = "";
         for (let y = 0; y < arrayQuizzUnico.questions[i].answers.length; y++) {
-            elementoContainerOpcoesQuizz.innerHTML += `
-                <div class="pergunta-quizz-opcao correta" onclick="escolherResposta(this)">
-                    <img src="${arrayQuizzUnico.questions[i].answers[y].image}">
-                    ${arrayQuizzUnico.questions[i].answers[y].text}
-                </div>
-            `;
+            if (arrayQuizzUnico.questions[i].answers[y].isCorrectAnswer) {
+                elementoContainerOpcoesQuizz.innerHTML += `
+                    <div class="pergunta-quizz-opcao correta" onclick="escolherResposta(this)">
+                        <img src="${arrayQuizzUnico.questions[i].answers[y].image}">
+                        ${arrayQuizzUnico.questions[i].answers[y].text}
+                    </div>
+                `;
+            } else {
+                elementoContainerOpcoesQuizz.innerHTML += `
+                    <div class="pergunta-quizz-opcao errada" onclick="escolherResposta(this)">
+                        <img src="${arrayQuizzUnico.questions[i].answers[y].image}">
+                        ${arrayQuizzUnico.questions[i].answers[y].text}
+                    </div>
+                `;
+            }
+            
         }
         elementoUl.innerHTML += `
             <li class="pergunta-quizz">
@@ -56,4 +66,11 @@ function renderizarQuizzUnico() {
             </li>
         `;
     }
+
+    const elementoTituloResultadoQuizz = document.querySelector(".titulo-resultado-quizz");
+    elementoTituloResultadoQuizz.innerHTML = `${arrayQuizzUnico.levels[0].title}`;
+    const elementoImagemResultadoQuizz = document.querySelector(".resultado-quizz img");
+    elementoImagemResultadoQuizz.setAttribute("src", `${arrayQuizzUnico.levels[0].image}`);
+    const elementoDescricaoResultadoQuizz = document.querySelector(".resultado-quizz span");
+    elementoDescricaoResultadoQuizz.innerHTML = `${arrayQuizzUnico.levels[0].text}`;
 }
