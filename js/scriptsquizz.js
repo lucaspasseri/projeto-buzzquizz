@@ -1,5 +1,5 @@
-receberQuizzUnico();
-obterQuizzes();
+//receberQuizzUnico();
+//obterQuizzes();
 
 let arrayQuizzes;
 let arrayQuizzUnico;
@@ -53,7 +53,6 @@ function renderizarQuizzUnico() {
                     </div>
                 `;
             }
-            
         }
         elementoUl.innerHTML += `
             <li class="pergunta-quizz">
