@@ -95,8 +95,6 @@ function validURL(str) {
 function criarNiveis(){
     
   const seletorPergunta = document.querySelectorAll(".pergunta");
-
-  console.log(seletorPergunta[0])
   const validacaoPerguntas = [];
 
   for(let i = 0; i < seletorPergunta.length; i++){
@@ -124,13 +122,40 @@ function criarNiveis(){
       perguntasValidadas = perguntasValidadas && validacaoPerguntas[i];
     }
   }
-  //console.log(validacaoPerguntas, perguntasValidadas);
+
+  perguntasValidadas = true;
 
   if(perguntasValidadas){
     const seletorSegundaParte = document.querySelector(".segunda-parte");
     seletorSegundaParte.classList.add("escondido");
     const seletorTerceiraParte = document.querySelector(".terceira-parte");
     seletorTerceiraParte.classList.remove("escondido");
+
+    const seletorNiveis = document.querySelector(".niveis");
+    seletorNiveis.innerHTML="";
+    for(let i = 0; i < novoQuizz.levels.length; i++){
+      if(i === 0){
+        seletorNiveis.innerHTML += `<div>
+                                    <span onclick="selecionarNivel(this)">Nível ${i+1}</span>
+                                    <ul class="nivel">
+                                        <li><input type="text" placeholder="Título do nível"></li>
+                                        <li><input type="text" placeholder="% de acerto mínima"></li>
+                                        <li><input type="text" placeholder="URL da imagem do nível"></li>
+                                        <li><textarea rows="4" cols="30" placeholder="Descrição do nível"></textarea></li>
+                                    </ul>
+                                  </div>`;
+      } else {
+        seletorNiveis.innerHTML += `<div>
+                                    <span onclick="selecionarNivel(this)">Nível ${i+1}</span>
+                                    <ul class="nivel escondido">
+                                        <li><input type="text" placeholder="Título do nível"></li>
+                                        <li><input type="text" placeholder="% de acerto mínima"></li>
+                                        <li><input type="text" placeholder="URL da imagem do nível"></li>
+                                        <li><textarea rows="4" cols="30" placeholder="Descrição do nível"></textarea></li>
+                                    </ul>
+                                  </div>`;
+      }
+    }
     
     for(let i = 0; i < seletorPergunta.length; i++){
       let seletorInputs = seletorPergunta[i].querySelectorAll("input");
@@ -150,8 +175,8 @@ function criarNiveis(){
         novoQuizz.questions[i].answers.push({"text": seletorInputs[2*r+4].value, "image": seletorInputs[2*r+5].value,
                                     "isCorrectAnswer": false});
       }
-      console.log(novoQuizz);
     }
+    console.log(novoQuizz);
   }
 }
 function isValidHex(color) {
@@ -168,16 +193,23 @@ function isValidHex(color) {
     }
   }
 function finalizarQuizz(){
-    /* const seletorTerceiraParte = document.querySelector(".terceira-parte");
-    seletorTerceiraParte.classList.add("escondido");
-    const seletorQuartaParte = document.querySelector(".quarta-parte");
-    seletorQuartaParte.classList.remove("escondido"); */
-  console.log(novoQuizz);
+
+    let validacao = false;
+    if(validacao){
+      const seletorTerceiraParte = document.querySelector(".terceira-parte");
+      seletorTerceiraParte.classList.add("escondido");
+      const seletorQuartaParte = document.querySelector(".quarta-parte");
+      seletorQuartaParte.classList.remove("escondido");
+    }
 }
 function voltarPaginaInicial(){
     window.location.reload();
 }
 function selecionarPergunta(elemento){
+  const seletorUL = elemento.parentNode.querySelector("ul");
+  seletorUL.classList.toggle("escondido");
+}
+function selecionarNivel(elemento){
   const seletorUL = elemento.parentNode.querySelector("ul");
   seletorUL.classList.toggle("escondido");
 }
