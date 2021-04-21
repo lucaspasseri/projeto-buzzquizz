@@ -103,7 +103,6 @@ function escolherResposta(pergunta, elemento) {
 
 function verificarPontuacao() {
     const resultado = Math.round(totalAcertos / totalPerguntas * 100);
-    console.log(resultado);
 
     for (let i = 0; i < arrayQuizzUnico.levels.length; i++) {
         if (resultado >= arrayQuizzUnico.levels[i].minValue) {
@@ -117,4 +116,12 @@ function verificarPontuacao() {
     }
     const elementoResultadoQuizz = document.querySelector(".resultado-quizz");
     elementoResultadoQuizz.classList.remove("escondido");
+    //const elementoBotaoReiniciar = document.querySelector(".resultado-quizz button");
+    //elementoBotaoReiniciar.classList.remove("escondido");
+    //const elementoVoltarHome = document.querySelector("resultado-quizz .voltar-home");
+    //elementoVoltarHome.classList.remove("escondido");
+}
+
+function reiniciarQuizz() {
+
 }
