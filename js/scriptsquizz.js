@@ -1,5 +1,5 @@
-//receberQuizzUnico();
-//obterQuizzes();
+receberQuizzUnico();
+obterQuizzes();
 
 let arrayQuizzes;
 let arrayQuizzUnico;
@@ -20,7 +20,6 @@ function receberQuizzUnico() {
 
 function sucessoReceberQuizzUnico(promessaQuizzUnico) {
     arrayQuizzUnico = promessaQuizzUnico.data;
-    console.log(arrayQuizzUnico);
     renderizarQuizzUnico();
 }
 
@@ -40,14 +39,14 @@ function renderizarQuizzUnico() {
         for (let y = 0; y < arrayQuizzUnico.questions[i].answers.length; y++) {
             if (arrayQuizzUnico.questions[i].answers[y].isCorrectAnswer) {
                 elementoContainerOpcoesQuizz.innerHTML += `
-                    <div class="pergunta-quizz-opcao correta" onclick="escolherResposta(this)">
+                    <div class="pergunta-quizz-opcao correta p${i} r${y}" onclick="escolherResposta(${i}, ${y}, this)">
                         <img src="${arrayQuizzUnico.questions[i].answers[y].image}">
                         ${arrayQuizzUnico.questions[i].answers[y].text}
                     </div>
                 `;
             } else {
                 elementoContainerOpcoesQuizz.innerHTML += `
-                    <div class="pergunta-quizz-opcao errada" onclick="escolherResposta(this)">
+                    <div class="pergunta-quizz-opcao errada p${i} r${y}" onclick="escolherResposta(${i}, ${y}, this)">
                         <img src="${arrayQuizzUnico.questions[i].answers[y].image}">
                         ${arrayQuizzUnico.questions[i].answers[y].text}
                     </div>
@@ -72,4 +71,26 @@ function renderizarQuizzUnico() {
     elementoImagemResultadoQuizz.setAttribute("src", `${arrayQuizzUnico.levels[0].image}`);
     const elementoDescricaoResultadoQuizz = document.querySelector(".resultado-quizz span");
     elementoDescricaoResultadoQuizz.innerHTML = `${arrayQuizzUnico.levels[0].text}`;
+}
+
+function escolherResposta(pergunta, resposta, elemento) {
+    const perguntaEscolhida = pergunta;
+    const respostaEscolhida = resposta;
+    const elementoClicadoPai = elemento.parentNode;
+    const elementoClicado = elemento;
+    for (let i = 0; i < arrayQuizzUnico.questions[perguntaEscolhida].answers.length; i++) {
+        const elementoOpcaoResposta = elementoClicadoPai.querySelector(`.r${i}`);
+        console.log(elementoOpcaoResposta);
+        if (!elementoOpcaoResposta.classList.contains("correta")) {
+            elementoOpcaoResposta.style.color = "#FF0B0B";
+        } else {
+            elementoOpcaoResposta.style.color = "#009C22";
+        }
+
+        if (elementoOpcaoResposta !== elementoClicado) {
+            elementoOpcaoResposta.classList.add("opaco");
+        }
+
+        elementoOpcaoResposta.setAttribute("onclick", "");
+    }
 }
