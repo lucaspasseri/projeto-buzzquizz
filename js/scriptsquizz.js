@@ -24,12 +24,12 @@ function sucessoReceberQuizzUnico(promessaQuizzUnico) {
 }
 
 function renderizarQuizzUnico() {
+    totalPerguntas = arrayQuizzUnico.questions.length;
     const elementoBanner = document.querySelector(".banner-titulo-quizz");
     elementoBanner.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${arrayQuizzUnico.image}')`;
     elementoBanner.innerHTML = arrayQuizzUnico.title;
 
     const elementoUl = document.querySelector(".lista-perguntas-quizz");
-    const elementoTituloQuizz = document.querySelector(".titulo-quizz");
     const elementoContainerOpcoesQuizz = document.querySelector(".container-opcoes-quizz");
     elementoUl.innerHTML = "";
     elementoContainerOpcoesQuizz.innerHTML = "";
@@ -39,14 +39,14 @@ function renderizarQuizzUnico() {
         for (let y = 0; y < arrayQuizzUnico.questions[i].answers.length; y++) {
             if (arrayQuizzUnico.questions[i].answers[y].isCorrectAnswer) {
                 elementoContainerOpcoesQuizz.innerHTML += `
-                    <div class="pergunta-quizz-opcao correta p${i} r${y}" onclick="escolherResposta(${i}, ${y}, this)">
+                    <div class="pergunta-quizz-opcao correta p${i} r${y}" onclick="escolherResposta(${i}, this)">
                         <img src="${arrayQuizzUnico.questions[i].answers[y].image}">
                         ${arrayQuizzUnico.questions[i].answers[y].text}
                     </div>
                 `;
             } else {
                 elementoContainerOpcoesQuizz.innerHTML += `
-                    <div class="pergunta-quizz-opcao errada p${i} r${y}" onclick="escolherResposta(${i}, ${y}, this)">
+                    <div class="pergunta-quizz-opcao errada p${i} r${y}" onclick="escolherResposta(${i}, this)">
                         <img src="${arrayQuizzUnico.questions[i].answers[y].image}">
                         ${arrayQuizzUnico.questions[i].answers[y].text}
                     </div>
@@ -55,7 +55,7 @@ function renderizarQuizzUnico() {
         }
         elementoUl.innerHTML += `
             <li class="pergunta-quizz">
-                <div class="titulo-quizz">
+                <div class="titulo-quizz t${i}">
                     ${arrayQuizzUnico.questions[i].title}
                 </div>
                 <div class="container-opcoes-quizz">
@@ -63,24 +63,22 @@ function renderizarQuizzUnico() {
                 </div>
             </li>
         `;
+        const elementoTituloQuizz = document.querySelector(`.t${i}`);
+        elementoTituloQuizz.style.backgroundColor = arrayQuizzUnico.questions[i].color;
     }
-
-    const elementoTituloResultadoQuizz = document.querySelector(".titulo-resultado-quizz");
-    elementoTituloResultadoQuizz.innerHTML = `${arrayQuizzUnico.levels[0].title}`;
-    const elementoImagemResultadoQuizz = document.querySelector(".resultado-quizz img");
-    elementoImagemResultadoQuizz.setAttribute("src", `${arrayQuizzUnico.levels[0].image}`);
-    const elementoDescricaoResultadoQuizz = document.querySelector(".resultado-quizz span");
-    elementoDescricaoResultadoQuizz.innerHTML = `${arrayQuizzUnico.levels[0].text}`;
 }
 
-function escolherResposta(pergunta, resposta, elemento) {
+let totalAcertos = 0;
+let totalRespondido = 0;
+let totalPerguntas = 0;
+
+function escolherResposta(pergunta, elemento) {
     const perguntaEscolhida = pergunta;
-    const respostaEscolhida = resposta;
     const elementoClicadoPai = elemento.parentNode;
     const elementoClicado = elemento;
+    
     for (let i = 0; i < arrayQuizzUnico.questions[perguntaEscolhida].answers.length; i++) {
         const elementoOpcaoResposta = elementoClicadoPai.querySelector(`.r${i}`);
-        console.log(elementoOpcaoResposta);
         if (!elementoOpcaoResposta.classList.contains("correta")) {
             elementoOpcaoResposta.style.color = "#FF0B0B";
         } else {
@@ -90,7 +88,33 @@ function escolherResposta(pergunta, resposta, elemento) {
         if (elementoOpcaoResposta !== elementoClicado) {
             elementoOpcaoResposta.classList.add("opaco");
         }
-
         elementoOpcaoResposta.setAttribute("onclick", "");
     }
+    if (elementoClicado.classList.contains("correta")) {
+        totalAcertos++;
+    }
+
+    totalRespondido++;
+
+    if(totalRespondido === totalPerguntas) {
+        verificarPontuacao();
+    }
+}
+
+function verificarPontuacao() {
+    const resultado = Math.round(totalAcertos / totalPerguntas * 100);
+    console.log(resultado);
+
+    for (let i = 0; i < arrayQuizzUnico.levels.length; i++) {
+        if (resultado >= arrayQuizzUnico.levels[i].minValue) {
+            const elementoTituloResultadoQuizz = document.querySelector(".titulo-resultado-quizz");
+            elementoTituloResultadoQuizz.innerHTML = `${arrayQuizzUnico.levels[i].title}`;
+            const elementoImagemResultadoQuizz = document.querySelector(".resultado-quizz img");
+            elementoImagemResultadoQuizz.setAttribute("src", `${arrayQuizzUnico.levels[i].image}`);
+            const elementoDescricaoResultadoQuizz = document.querySelector(".resultado-quizz span");
+            elementoDescricaoResultadoQuizz.innerHTML = `${arrayQuizzUnico.levels[i].text}`;
+        }
+    }
+    const elementoResultadoQuizz = document.querySelector(".resultado-quizz");
+    elementoResultadoQuizz.classList.remove("escondido");
 }
