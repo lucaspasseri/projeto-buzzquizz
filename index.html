@@ -18,11 +18,11 @@
     </header>
 
     <div class="lista-de-quizzes">
-        <div class="titulo-seus-quizzes">
+        <div class="titulo-seus-quizzes escondido">
             <span>Seus Quizzes</span>
             <ion-icon onclick="adicionarQuizz()" name="add-circle"></ion-icon>
         </div>
-        <ul class="seus-quizzes">
+        <ul class="seus-quizzes escondido">
             <li class="cartao-quizz">
                 <span>Você não criou nenhum quizz ainda :(</span>
                 <button onclick="adicionarQuizz()">Criar Quizz</button>
@@ -42,7 +42,7 @@
         </ul>
     </div>
 
-    <div class="pagina-de-um-quizz">
+    <div class="pagina-de-um-quizz escondido">
         <div class="banner-titulo-quizz">
             O quão Potterhead é você?
         </div>
@@ -119,25 +119,27 @@
         <div class="segunda-parte escondido">
             <div class="apresentacao">Crie suas perguntas</div>
             <div class="perguntas">
-                <div><span>Pergunta 1</span></div>
-                <ul class="pergunta-1">
-                    <li><input type="text" placeholder="Texto da pergunta"></li>
-                    <li><input type="text" placeholder="Cor de fundo da pergunta"></li>
-                    <span>Resposta correta</span>
-                    <ul>
-                        <li><input type="text" placeholder="Resposta correta"></li>
-                        <li><input type="text" placeholder="URL da imagem"></li>
+                <div>
+                    <span>Pergunta 1</span>
+                    <ul class="pergunta-1">
+                        <li><input type="text" placeholder="Texto da pergunta"></li>
+                        <li><input type="text" placeholder="Cor de fundo da pergunta"></li>
+                        <span>Resposta correta</span>
+                        <ul>
+                            <li><input type="text" placeholder="Resposta correta"></li>
+                            <li><input type="text" placeholder="URL da imagem"></li>
+                        </ul>
+                        <span>Respostas incorretas</span>
+                        <ul>
+                            <li><input type="text" placeholder="Resposta incorreta 1"></li>
+                            <li><input type="text" placeholder="URL da imagem 1"></li>
+                            <li><input type="text" placeholder="Resposta incorreta 2"></li>
+                            <li><input type="text" placeholder="URL da imagem 2"></li>
+                            <li><input type="text" placeholder="Resposta incorreta 3"></li>
+                            <li><input type="text" placeholder="URL da imagem 3"></li>
+                        </ul>               
                     </ul>
-                    <span>Respostas incorretas</span>
-                    <ul>
-                        <li><input type="text" placeholder="Resposta incorreta 1"></li>
-                        <li><input type="text" placeholder="URL da imagem 1"></li>
-                        <li><input type="text" placeholder="Resposta incorreta 2"></li>
-                        <li><input type="text" placeholder="URL da imagem 2"></li>
-                        <li><input type="text" placeholder="Resposta incorreta 3"></li>
-                        <li><input type="text" placeholder="URL da imagem 3"></li>
-                    </ul>   
-                </ul>
+                </div>
                 <div><span>Pergunta 2</span></div>
                 <div><span>Pergunta 3</span></div>
             </div>
@@ -145,27 +147,19 @@
         </div>
         <div class="terceira-parte escondido">
             <div class="apresentacao">Agora, decida os níveis</div>
-            <div><span>Nível 1</span></div>
-            <ul>
-                <li><input type="text" placeholder="Título do nível"></li>
-                <li><input type="text" placeholder="% de acerto mínima"></li>
-                <li><input type="text" placeholder="URL da imagem do nível"></li>
-                <li><textarea rows="4" cols="30" placeholder="Descrição do nível"></textarea></li>
-            </ul>
-            <div><span>Nível 2</span></div>
-            <ul class="escondido">
-                <li><input type="text" placeholder="Título do nível"></li>
-                <li><input type="text" placeholder="% de acerto mínima"></li>
-                <li><input type="text" placeholder="URL da imagem do nível"></li>
-                <li><textarea rows="4" cols="30" placeholder="Descrição do nível"></textarea></li>
-            </ul>
-            <div><span>Nível 3</span></div>
-            <ul class="escondido">
-                <li><input type="text" placeholder="Título do nível"></li>
-                <li><input type="text" placeholder="% de acerto mínima"></li>
-                <li><input type="text" placeholder="URL da imagem do nível"></li>
-                <li><textarea rows="4" cols="30" placeholder="Descrição do nível"></textarea></li>
-            </ul>
+            <div class="niveis">
+                <div>
+                    <span>Nível 1</span>
+                    <ul>
+                        <li><input type="text" placeholder="Título do nível"></li>
+                        <li><input type="text" placeholder="% de acerto mínima"></li>
+                        <li><input type="text" placeholder="URL da imagem do nível"></li>
+                        <li><textarea rows="4" cols="30" placeholder="Descrição do nível"></textarea></li>
+                    </ul>
+                </div>
+                <div><span>Nível 2</span></div>
+                <div><span>Nível 3</span></div>
+            </div>
             <button onclick="finalizarQuizz()">Finalizar Quizz</button>
         </div>
         <div class="quarta-parte escondido">
@@ -179,6 +173,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="./js/scripts.js"></script>
-    <script src="./js/scriptsquizz.js"></script>
+    <!-- <script src="./js/scriptsquizz.js"></script> -->
+    <script src="./js/scripts-primeirapag.js"></script>
 </body>
 </html>
