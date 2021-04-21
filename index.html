@@ -42,7 +42,7 @@
         </ul>
     </div>
 
-    <div class="pagina-de-um-quizz escondido    ">
+    <div class="pagina-de-um-quizz">
         <div class="banner-titulo-quizz">
             O quão Potterhead é você?
         </div>
@@ -52,19 +52,19 @@
                     Em qual animal Olho-Tonto Moody transfigurou Malfoy?
                 </div>
                 <div class="container-opcoes-quizz">
-                    <div class="pergunta-quizz-opcao">
+                    <div class="pergunta-quizz-opcao correta" onclick="escolherResposta(this)">
                         <img src="./gato-para-teste.jpg" alt="Gato">
                         Gatíneo
                     </div>
-                    <div class="pergunta-quizz-opcao">
+                    <div class="pergunta-quizz-opcao errada" onclick="escolherResposta(this)">
                         <img src="./gato-para-teste.jpg" alt="Gato">
                         Ratata
                     </div>
-                    <div class="pergunta-quizz-opcao">
+                    <div class="pergunta-quizz-opcao errada" onclick="escolherResposta(this)">
                         <img src="./gato-para-teste.jpg" alt="Gato">
                         Sapo gordo
                     </div>
-                    <div class="pergunta-quizz-opcao">
+                    <div class="pergunta-quizz-opcao errada" onclick="escolherResposta(this)">
                         <img src="./gato-para-teste.jpg" alt="Gato">
                         Mustela putorius (o Furão)
                     </div>
@@ -94,6 +94,15 @@
                 </div>
             </li>
         </ul>
+        <div class="resultado-quizz">
+            <div class="titulo-resultado-quizz">
+                88% de acerto: Você é praticamente um aluno de Hogwarts!
+            </div>
+            <img src="https://i.pinimg.com/originals/95/17/4a/95174a038db96f152cf9acc15dd3e9cd.jpg" alt="Meme Dumbledore">
+            <span>Parabéns Potterhead! Bem-vindo a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.</span>
+        </div>
+        <button>Reiniciar Quizz</button>
+        <span class="voltar-home">Voltar para home</span>
     </div>
 
     <div class="criacao-de-quizz escondido">
@@ -101,9 +110,9 @@
             <div class="apresentacao">Comece pelo começo</div>
             <ul>
                 <li><input type="text" placeholder="Título do seu quizz"></li>
-                <li><input type="url" placeholder="URL da imagem do quizz"></li>
-                <li><input type="number" placeholder="Quantidade de perguntas do quizz"></li>
-                <li><input type="number" placeholder="Quantidade de níveis do quizz"></li>
+                <li><input type="text" placeholder="URL da imagem do quizz"></li>
+                <li><input type="text" placeholder="Quantidade de perguntas do quizz"></li>
+                <li><input type="text" placeholder="Quantidade de níveis do quizz"></li>
             </ul>
             <button onclick="criarPerguntas()">Prosseguir para criar perguntas</button>
         </div>
@@ -166,8 +175,10 @@
             <div><span onclick="voltarPaginaInicial()">Voltar para home</span></div>
         </div>
     </div>
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="./js/scripts.js"></script>
+    <script src="./js/scriptsquizz.js"></script>
 </body>
 </html>
