@@ -1,3 +1,4 @@
+const novoQuizz = {};
 
 function adicionarQuizz(){
     const seletorListaDeQuizzes = document.querySelector(".lista-de-quizzes");
@@ -20,6 +21,65 @@ function criarPerguntas(){
         seletorPrimeiraParte.classList.add("escondido");
         const seletorSegundaParte = document.querySelector(".segunda-parte");
         seletorSegundaParte.classList.remove("escondido");
+
+        const seletorPerguntas = document.querySelector(".perguntas");
+        seletorPerguntas.innerHTML = "";
+        for(let i = 0; i < seletorInputs[2].value; i++){
+          if( i === 0 ){
+            seletorPerguntas.innerHTML += `<div>
+                                            <span onclick="selecionarPergunta(this)">Pergunta ${i+1}</span>
+                                            <ul class="pergunta id-${i+1}">
+                                              <li><input type="text" placeholder="Texto da pergunta"></li>
+                                              <li><input type="text" placeholder="Cor de fundo da pergunta"></li>
+                                              <span>Resposta correta</span>
+                                              <ul>
+                                                <li><input type="text" placeholder="Resposta correta"></li>
+                                                <li><input type="text" placeholder="URL da imagem"></li>
+                                              </ul>
+                                              <span>Respostas incorretas</span>
+                                              <ul>
+                                                <li><input type="text" placeholder="Resposta incorreta 1"></li>
+                                                <li><input type="text" placeholder="URL da imagem 1"></li>
+                                                <li><input type="text" placeholder="Resposta incorreta 2"></li>
+                                                <li><input type="text" placeholder="URL da imagem 2"></li>
+                                                <li><input type="text" placeholder="Resposta incorreta 3"></li>
+                                                <li><input type="text" placeholder="URL da imagem 3"></li>
+                                              </ul>   
+                                            </ul>
+                                          </div>`;
+          } else {
+            seletorPerguntas.innerHTML +=  `<div>
+                                              <span onclick="selecionarPergunta(this)">Pergunta ${i+1}</span>
+                                              <ul class="pergunta id-${i+1} escondido">
+                                                <li><input type="text" placeholder="Texto da pergunta"></li>
+                                                <li><input type="text" placeholder="Cor de fundo da pergunta"></li>
+                                                <span>Resposta correta</span>
+                                                <ul>
+                                                  <li><input type="text" placeholder="Resposta correta"></li>
+                                                  <li><input type="text" placeholder="URL da imagem"></li>
+                                                </ul>
+                                                <span>Respostas incorretas</span>
+                                                <ul>
+                                                  <li><input type="text" placeholder="Resposta incorreta 1"></li>
+                                                  <li><input type="text" placeholder="URL da imagem 1"></li>
+                                                  <li><input type="text" placeholder="Resposta incorreta 2"></li>
+                                                  <li><input type="text" placeholder="URL da imagem 2"></li>
+                                                  <li><input type="text" placeholder="Resposta incorreta 3"></li>
+                                                  <li><input type="text" placeholder="URL da imagem 3"></li>
+                                                </ul>   
+                                              </ul>
+                                            </div>`;
+          }  
+        }
+        novoQuizz["title"] = seletorInputs[0].value;
+        novoQuizz["image"] = seletorInputs[1].value;
+        novoQuizz["questions"] = [];
+        for(let i = 0; i < seletorInputs[2].value; i++){
+          novoQuizz.questions.push({});
+        }
+        novoQuizz["levels"] = [];
+        for(let i = 0; i < seletorInputs[3].value; i++)
+          novoQuizz.levels.push({});
     }    
 }
 function validURL(str) {
@@ -33,40 +93,66 @@ function validURL(str) {
   }
   
 function criarNiveis(){
-    const seletorInputs = document.querySelectorAll(".pergunta-1 input");
     
-    const caracteresDaPergunta = seletorInputs[0].value.length > 19;
-    const hexCorDeFundo = isValidHex(seletorInputs[1].value);
-    const respostaCorreta = seletorInputs[2].value.trim().length !== 0;
+  const seletorPergunta = document.querySelectorAll(".pergunta");
 
-    let respostasIncorretas = false;
-    let indicesRespostaIncorretas = [];
-    for(let i = 4; i < 9; i+=2){ // intera entre as respostas incorretas {input(4,6,8)}
-      if(seletorInputs[i].value.trim().length !== 0){
-        indicesRespostaIncorretas.push(i);
-        respostasIncorretas = true;
+  console.log(seletorPergunta[0])
+  const validacaoPerguntas = [];
+
+  for(let i = 0; i < seletorPergunta.length; i++){
+    let seletorInputs = seletorPergunta[i].querySelectorAll("input");
+    let caracteresDaPergunta = seletorInputs[0].value.length > 19;
+    let hexCorDeFundo = isValidHex(seletorInputs[1].value);
+    let respostaCorretaPreenchida = seletorInputs[2].value.trim().length !== 0;
+    let respostaCorretaURLPreenchida = validURL(seletorInputs[3].value);
+
+    let indicesRespostasIncorretas = [];
+    for(let i = 0; i < 3; i++){
+      if(seletorInputs[2*i+4].value.trim().length !== 0 && validURL(seletorInputs[2*i+5].value)){
+        indicesRespostasIncorretas.push(i);
+      } 
+    }
+
+    let validacaoAtual = caracteresDaPergunta  && hexCorDeFundo && respostaCorretaPreenchida && 
+    respostaCorretaURLPreenchida && (indicesRespostasIncorretas.length > 0);
+    validacaoPerguntas.push(validacaoAtual);
+  }
+
+  let perguntasValidadas = true;
+  for(let i = 0; i < validacaoPerguntas.length; i++){
+    if(validacaoPerguntas[i]!==true){
+      perguntasValidadas = perguntasValidadas && validacaoPerguntas[i];
+    }
+  }
+  //console.log(validacaoPerguntas, perguntasValidadas);
+
+  if(perguntasValidadas){
+    const seletorSegundaParte = document.querySelector(".segunda-parte");
+    seletorSegundaParte.classList.add("escondido");
+    const seletorTerceiraParte = document.querySelector(".terceira-parte");
+    seletorTerceiraParte.classList.remove("escondido");
+    
+    for(let i = 0; i < seletorPergunta.length; i++){
+      let seletorInputs = seletorPergunta[i].querySelectorAll("input");
+      novoQuizz.questions[i]["title"]= seletorInputs[0].value;
+      novoQuizz.questions[i]["color"]= seletorInputs[1].value;
+      novoQuizz.questions[i]["answers"]= [];
+      novoQuizz.questions[i].answers.push({ "text": seletorInputs[2].value,"image": seletorInputs[3].value,
+                                    "isCorrectAnswer": true});
+      let indicesRespostasIncorretas = [];
+      for(let i = 0; i < 3; i++){
+        if(seletorInputs[2*i+4].value.trim().length !== 0 && validURL(seletorInputs[2*i+5].value)){
+          indicesRespostasIncorretas.push(i);
+        } 
       }
-    }
 
-    let URLsValidas  = true;
-    let numeroURLsIncorretas = 0;
-    for(const i of indicesRespostaIncorretas){
-      URLsValidas = URLsValidas && validURL(seletorInputs[i+1].value);
-      numeroURLsIncorretas++;
+      for (const r of indicesRespostasIncorretas){
+        novoQuizz.questions[i].answers.push({"text": seletorInputs[2*r+4].value, "image": seletorInputs[2*r+5].value,
+                                    "isCorrectAnswer": false});
+      }
+      console.log(novoQuizz);
     }
-    URLsValidas = numeroURLsIncorretas && URLsValidas && validURL(seletorInputs[3].value);
-
-    console.log("respostasIncorretas:",respostasIncorretas);
-    console.log("indicesRespostaIncorretas:",indicesRespostaIncorretas);
-    console.log("URLsValidas:",URLsValidas);
-    const validacao = caracteresDaPergunta && hexCorDeFundo && respostaCorreta && respostasIncorretas 
-    && URLsValidas;
-    if(validacao){
-        const seletorSegundaParte = document.querySelector(".segunda-parte");
-        seletorSegundaParte.classList.add("escondido");
-        const seletorTerceiraParte = document.querySelector(".terceira-parte");
-        seletorTerceiraParte.classList.remove("escondido");
-    }
+  }
 }
 function isValidHex(color) {
     if(!color || typeof color !== 'string') return false;
@@ -82,11 +168,16 @@ function isValidHex(color) {
     }
   }
 function finalizarQuizz(){
-    const seletorTerceiraParte = document.querySelector(".terceira-parte");
+    /* const seletorTerceiraParte = document.querySelector(".terceira-parte");
     seletorTerceiraParte.classList.add("escondido");
     const seletorQuartaParte = document.querySelector(".quarta-parte");
-    seletorQuartaParte.classList.remove("escondido");
+    seletorQuartaParte.classList.remove("escondido"); */
+  console.log(novoQuizz);
 }
 function voltarPaginaInicial(){
     window.location.reload();
+}
+function selecionarPergunta(elemento){
+  const seletorUL = elemento.parentNode.querySelector("ul");
+  seletorUL.classList.toggle("escondido");
 }
