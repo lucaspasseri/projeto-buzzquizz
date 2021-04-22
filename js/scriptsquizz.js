@@ -39,14 +39,14 @@ function renderizarQuizzUnico() {
         for (let y = 0; y < arrayQuizzUnico.questions[i].answers.length; y++) {
             if (arrayQuizzUnico.questions[i].answers[y].isCorrectAnswer) {
                 elementoContainerOpcoesQuizz.innerHTML += `
-                    <div class="pergunta-quizz-opcao correta p${i} r${y}" onclick="escolherResposta(${i}, this)">
+                    <div class="pergunta-quizz-opcao correta r${y}" onclick="escolherResposta(${i}, this)">
                         <img src="${arrayQuizzUnico.questions[i].answers[y].image}">
                         ${arrayQuizzUnico.questions[i].answers[y].text}
                     </div>
                 `;
             } else {
                 elementoContainerOpcoesQuizz.innerHTML += `
-                    <div class="pergunta-quizz-opcao errada p${i} r${y}" onclick="escolherResposta(${i}, this)">
+                    <div class="pergunta-quizz-opcao errada r${y}" onclick="escolherResposta(${i}, this)">
                         <img src="${arrayQuizzUnico.questions[i].answers[y].image}">
                         ${arrayQuizzUnico.questions[i].answers[y].text}
                     </div>
@@ -54,7 +54,7 @@ function renderizarQuizzUnico() {
             }
         }
         elementoUl.innerHTML += `
-            <li class="pergunta-quizz">
+            <li class="pergunta-quizz p${i}">
                 <div class="titulo-quizz t${i}">
                     ${arrayQuizzUnico.questions[i].title}
                 </div>
@@ -99,6 +99,8 @@ function escolherResposta(pergunta, elemento) {
     if(totalRespondido === totalPerguntas) {
         verificarPontuacao();
     }
+
+    rolarPaginaBaixo(perguntaEscolhida + 1);
 }
 
 function verificarPontuacao() {
@@ -116,12 +118,35 @@ function verificarPontuacao() {
     }
     const elementoResultadoQuizz = document.querySelector(".resultado-quizz");
     elementoResultadoQuizz.classList.remove("escondido");
-    //const elementoBotaoReiniciar = document.querySelector(".resultado-quizz button");
-    //elementoBotaoReiniciar.classList.remove("escondido");
-    //const elementoVoltarHome = document.querySelector("resultado-quizz .voltar-home");
-    //elementoVoltarHome.classList.remove("escondido");
+    const elementoBotaoReiniciar = document.querySelector(".pagina-de-um-quizz button");
+    elementoBotaoReiniciar.classList.remove("escondido");
+    const elementoVoltarHome = document.querySelector(".voltar-home");
+    elementoVoltarHome.classList.remove("escondido");
 }
 
 function reiniciarQuizz() {
+    totalAcertos = 0;
+    totalRespondido = 0;
+    const elementoResultadoQuizz = document.querySelector(".resultado-quizz");
+    elementoResultadoQuizz.classList.add("escondido");
+    const elementoBotaoReiniciar = document.querySelector(".pagina-de-um-quizz button");
+    elementoBotaoReiniciar.classList.add("escondido");
+    const elementoVoltarHome = document.querySelector(".voltar-home");
+    elementoVoltarHome.classList.add("escondido");
+    renderizarQuizzUnico();
+}
 
+function rolarPaginaBaixo(proximaPergunta) {
+    if (totalRespondido < totalPerguntas) {
+        const elementoRolagem = document.querySelector(`.p${proximaPergunta}`);
+        elementoRolagem.scrollIntoView();
+    } else {
+        const elementoRolagem = document.querySelector(`.resultado-quizz`);
+        elementoRolagem.scrollIntoView();
+    }
+}
+
+function rolarPaginaCima() {
+    const elementoRolagem = document.querySelector(".mensagens li:last-child");
+    elementoRolagem.scrollIntoView();
 }
