@@ -17,7 +17,7 @@
         BuzzQuizz
     </header>
 
-    <div class="lista-de-quizzes escondido">
+    <div class="lista-de-quizzes">
         <div class="titulo-seus-quizzes escondido">
             <span>Seus Quizzes</span>
             <ion-icon onclick="adicionarQuizz()" name="add-circle"></ion-icon>
@@ -39,7 +39,7 @@
         </ul>
     </div>
 
-    <div class="pagina-de-um-quizz">
+    <div class="pagina-de-um-quizz escondido">
         <div class="banner-titulo-quizz">
             O quão Potterhead é você?
         </div>
@@ -161,7 +161,7 @@
         </div>
         <div class="quarta-parte escondido">
             <div class="apresentacao">Seu quizz está pronto!</div>
-            <div><span>O quão Potterhead é você?</span></div>
+            <div class="cartao-quizz" onclick="alert()"><span>O quão Potterhead é você?</span></div>
             <button onclick="alert()">Acessar Quizz</button>
             <div><span onclick="voltarPaginaInicial()">Voltar para home</span></div>
         </div>
@@ -169,8 +169,8 @@
     
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-    <!--<script src="./js/scripts.js"></script>-->
+    <script src="./js/scripts.js"></script>
     <script src="./js/scriptsquizz.js"></script>
-    <!--<script src="./js/scripts-primeirapag.js"></script>-->
+    <script src="./js/scripts-primeirapag.js"></script>
 </body>
 </html>

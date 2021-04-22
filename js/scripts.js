@@ -79,7 +79,10 @@ function criarPerguntas(){
         novoQuizz["levels"] = [];
         for(let i = 0; i < seletorInputs[3].value; i++)
           novoQuizz.levels.push({});
-    }    
+    } else {
+      alert("Preencha os campos corretamente. Tente:\n   Título: caracteres entre 20 e 65\n   URL da imagem: válida"
+      + "\n   Perguntas: > 2\n   Niveis: > 1");
+    }   
 }
 function validURL(str) {
     var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
@@ -121,7 +124,6 @@ function criarNiveis(){
       perguntasValidadas = perguntasValidadas && validacaoPerguntas[i];
     }
   }
-  perguntasValidadas = true;
   if(perguntasValidadas){
     const seletorSegundaParte = document.querySelector(".segunda-parte");
     seletorSegundaParte.classList.add("escondido");
@@ -173,7 +175,12 @@ function criarNiveis(){
                                     "isCorrectAnswer": false});
       }
     }
-  }
+  } else {
+    alert("Preencha os campos corretamente. Tente:\n   Texto das perguntas: caracteres > 19" + 
+    "\n   Cor de fundo: valor hexadecimal (6 dígitos)"
+    + "\n   Texto das respostas: caracteres > 0\n   URL da imagem: válida" + 
+    "\n   *Todas as perguntas devem ser preenchidas.\n   *Uma resposta correta e pelo menos uma incorreta são obrigatórias.");
+  }   
 }
 function isValidHex(color) {
     if(!color || typeof color !== 'string') return false;
@@ -182,9 +189,9 @@ function isValidHex(color) {
     if(color.substring(0, 1) === '#') color = color.substring(1);
 
     switch(color.length) {
-      case 3: return /^[0-9A-F]{3}$/i.test(color);
+      //case 3: return /^[0-9A-F]{3}$/i.test(color);
       case 6: return /^[0-9A-F]{6}$/i.test(color);
-      case 8: return /^[0-9A-F]{8}$/i.test(color);
+      //case 8: return /^[0-9A-F]{8}$/i.test(color);
       default: return false;
     }
   }
@@ -220,8 +227,6 @@ function finalizarQuizz(){
       valorMinimo = Number(numeroAcertosMinimo[i]);
      }
   }
-  validacao = true;
-  valorMinimo = 0;
 
   if(validacao && valorMinimo === 0){
     const seletorTerceiraParte = document.querySelector(".terceira-parte");
@@ -236,17 +241,24 @@ function finalizarQuizz(){
       novoQuizz.levels[i]["text"] = seletorInputs[3].value;
       novoQuizz.levels[i]["minValue"] = Number(seletorInputs[1].value);
     }
-    console.log(novoQuizz);
-    
     const promessa = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes', novoQuizz);
     promessa.then(processarResposta);
     promessa.catch(processarFalhaResposta);
-  }
+  } else {
+    alert("Preencha os campos corretamente. Tente:\n   Título: caracteres > 9  \n   % de acertos: valor entre 0 e 100"
+    + "\n   URL da imagem: válida\n   Descrição: caracteres > 29   \n   *Todos os níveis devem ser preenchidos." +
+    "\n   *Em pelo menos um dos níveis, a % de acertos deve ser igual a 0.");
+  }   
 }
 function processarResposta(resposta){
-  console.log(resposta.data);
+  console.log("VOLTOU DO SERVIDOR!");
+  console.log(resposta);
+  /* console.log(resposta.data);
+  console.log(resposta.data.id); */
+  alert();
 }
 function processarFalhaResposta(erro){
+  console.log("FALHOU!");
   console.log(erro.response.status);
 }
 
