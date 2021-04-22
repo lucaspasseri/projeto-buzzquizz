@@ -1,5 +1,6 @@
 const novoQuizz = {};
 
+
 function adicionarQuizz(){
     const seletorListaDeQuizzes = document.querySelector(".lista-de-quizzes");
     seletorListaDeQuizzes.classList.add("escondido");
@@ -253,9 +254,8 @@ function finalizarQuizz(){
 function processarResposta(resposta){
   console.log("VOLTOU DO SERVIDOR!");
   console.log(resposta);
-  /* console.log(resposta.data);
-  console.log(resposta.data.id); */
-  alert();
+  console.log(resposta.data.id);
+  localStorage.setItem("id", resposta.data.id);
 }
 function processarFalhaResposta(erro){
   console.log("FALHOU!");
@@ -272,4 +272,15 @@ function selecionarPergunta(elemento){
 function selecionarNivel(elemento){
   const seletorUL = elemento.parentNode.querySelector("ul");
   seletorUL.classList.toggle("escondido");
+}
+
+function unicoQuizz(){
+    const id = localStorage.getItem("id");
+    const promessaQuizzUnico = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes/${id}`);
+    promessaQuizzUnico.then(sucessoReceberQuizzUnico);
+    
+    const elementoPaginaQuizz = document.querySelector(".pagina-de-um-quizz");
+    elementoPaginaQuizz.classList.remove("escondido");
+    const elementoQuartaParte = document.querySelector(".quarta-parte");
+    elementoQuartaParte.classList.add("escondido");
 }
