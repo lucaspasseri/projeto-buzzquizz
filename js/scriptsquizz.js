@@ -100,7 +100,7 @@ function escolherResposta(pergunta, elemento) {
         verificarPontuacao();
     }
 
-    rolarPaginaBaixo(perguntaEscolhida + 1);
+    setTimeout(`rolarPaginaBaixo(${perguntaEscolhida + 1})`, 2000);
 }
 
 function verificarPontuacao() {
@@ -134,19 +134,19 @@ function reiniciarQuizz() {
     const elementoVoltarHome = document.querySelector(".voltar-home");
     elementoVoltarHome.classList.add("escondido");
     renderizarQuizzUnico();
+    rolarPaginaCima();
 }
 
 function rolarPaginaBaixo(proximaPergunta) {
     if (totalRespondido < totalPerguntas) {
         const elementoRolagem = document.querySelector(`.p${proximaPergunta}`);
-        elementoRolagem.scrollIntoView();
+        elementoRolagem.scrollIntoView({block: "end", behavior: "smooth"});
     } else {
         const elementoRolagem = document.querySelector(`.resultado-quizz`);
-        elementoRolagem.scrollIntoView();
+        elementoRolagem.scrollIntoView({behavior: "smooth"});
     }
 }
 
 function rolarPaginaCima() {
-    const elementoRolagem = document.querySelector(".mensagens li:last-child");
-    elementoRolagem.scrollIntoView();
+    window.scrollTo({top: 0, left: 0, behavior: "smooth"});
 }
