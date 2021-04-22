@@ -21,7 +21,9 @@ function sucessoCarregarQuizzes(resposta) {
                 <span>${resposta.data[i].title}</span>
             </li>`;
         let seletorUltimaLI = seletorTodosOsQuizzes.querySelector("li:last-of-type");
-        seletorUltimaLI.style.backgroundImage = `url('${resposta.data[i].image}')`;
+        seletorUltimaLI.style.backgroundImage = `
+            linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url('${resposta.data[i].image}')
+        `;
     }
 }
 
@@ -32,6 +34,7 @@ function abrirQuizzUnico(id) {
     elementoPaginaInicial.classList.add("escondido");
     const elementoPaginaQuizz = document.querySelector(".pagina-de-um-quizz");
     elementoPaginaQuizz.classList.remove("escondido");
+    console.log("ta vindo");
 }
 
 function sucessoReceberQuizzUnico(promessaQuizzUnico) {
@@ -51,7 +54,9 @@ function sucessoReceberQuizzUnico(promessaQuizzUnico) {
 function renderizarQuizzUnico() {
     totalPerguntas = arrayQuizzUnico.questions.length;
     const elementoBanner = document.querySelector(".banner-titulo-quizz");
-    elementoBanner.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${arrayQuizzUnico.image}')`;
+    elementoBanner.style.backgroundImage = `
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${arrayQuizzUnico.image}')
+    `;
     elementoBanner.innerHTML = arrayQuizzUnico.title;
 
     const elementoUl = document.querySelector(".lista-perguntas-quizz");
