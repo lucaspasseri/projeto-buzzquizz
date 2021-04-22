@@ -1,26 +1,51 @@
-receberQuizzUnico();
-obterQuizzes();
-
 let arrayQuizzes;
 let arrayQuizzUnico;
+let totalAcertos = 0;
+let totalRespondido = 0;
+let totalPerguntas = 0;
 
-function obterQuizzes() {
-    const promessaQuizzes = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes");
-    promessaQuizzes.then(sucessoObterQuizzes);
+carregarQuizzes();
+
+function carregarQuizzes(){
+    const promessa = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes');
+    promessa.then(sucessoCarregarQuizzes);
 }
 
-function sucessoObterQuizzes(promessaQuizzes) {
-    arrayQuizzes = promessaQuizzes.data;
+function sucessoCarregarQuizzes(resposta) {
+    const seletorTodosOsQuizzes = document.querySelector(".todos-os-quizzes");
+    seletorTodosOsQuizzes.innerHTML ="";
+
+    for(let i = 0; i< resposta.data.length; i++){
+        seletorTodosOsQuizzes.innerHTML += `
+            <li onclick='abrirQuizzUnico(${resposta.data[i].id})' class="cartao-quizz">
+                <span>${resposta.data[i].title}</span>
+            </li>`;
+        let seletorUltimaLI = seletorTodosOsQuizzes.querySelector("li:last-of-type");
+        seletorUltimaLI.style.backgroundImage = `url('${resposta.data[i].image}')`;
+    }
 }
 
-function receberQuizzUnico() {
-    const promessaQuizzUnico = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes/1");
+function abrirQuizzUnico(id) {
+    const promessaQuizzUnico = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes/${id}`);
     promessaQuizzUnico.then(sucessoReceberQuizzUnico);
+    const elementoPaginaInicial = document.querySelector(".lista-de-quizzes");
+    elementoPaginaInicial.classList.add("escondido");
+    const elementoPaginaQuizz = document.querySelector(".pagina-de-um-quizz");
+    elementoPaginaQuizz.classList.remove("escondido");
 }
 
 function sucessoReceberQuizzUnico(promessaQuizzUnico) {
     arrayQuizzUnico = promessaQuizzUnico.data;
+    totalAcertos = 0;
+    totalRespondido = 0;
+    const elementoResultadoQuizz = document.querySelector(".resultado-quizz");
+    elementoResultadoQuizz.classList.add("escondido");
+    const elementoBotaoReiniciar = document.querySelector(".pagina-de-um-quizz button");
+    elementoBotaoReiniciar.classList.add("escondido");
+    const elementoVoltarHome = document.querySelector(".voltar-home");
+    elementoVoltarHome.classList.add("escondido");
     renderizarQuizzUnico();
+    rolarPaginaCima();
 }
 
 function renderizarQuizzUnico() {
@@ -57,7 +82,7 @@ function renderizarQuizzUnico() {
         }
         elementoUl.innerHTML += `
             <li class="pergunta-quizz p${i}">
-                <div class="titulo-quizz t${i}">
+                <div class="titulo-pergunta-quizz t${i}">
                     ${arrayQuizzUnico.questions[i].title}
                 </div>
                 <div class="container-opcoes-quizz">
@@ -69,10 +94,6 @@ function renderizarQuizzUnico() {
         elementoTituloQuizz.style.backgroundColor = arrayQuizzUnico.questions[i].color;
     }
 }
-
-let totalAcertos = 0;
-let totalRespondido = 0;
-let totalPerguntas = 0;
 
 function escolherResposta(pergunta, elemento) {
     const perguntaEscolhida = pergunta;
@@ -153,8 +174,6 @@ function rolarPaginaCima() {
     window.scrollTo({top: 0, left: 0, behavior: "smooth"});
 }
 
-let arrayRespostasRandomizadas = [];
-
 function randomizarRespostas() {
     for (let i = 0; i < arrayQuizzUnico.questions.length; i++) {
         arrayQuizzUnico.questions[i].answers.sort(comparador);
@@ -163,4 +182,13 @@ function randomizarRespostas() {
 
 function comparador() {
     return Math.random() - 0.5;
+}
+
+function voltarHome() {
+    const elementoPaginaInicial = document.querySelector(".lista-de-quizzes");
+    elementoPaginaInicial.classList.remove("escondido");
+    const elementoPaginaQuizz = document.querySelector(".pagina-de-um-quizz");
+    elementoPaginaQuizz.classList.add("escondido");
+    rolarPaginaCima();
+    carregarQuizzes();
 }

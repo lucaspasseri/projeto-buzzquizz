@@ -17,7 +17,7 @@
         BuzzQuizz
     </header>
 
-    <div class="lista-de-quizzes escondido">
+    <div class="lista-de-quizzes">
         <div class="titulo-seus-quizzes escondido">
             <span>Seus Quizzes</span>
             <ion-icon onclick="adicionarQuizz()" name="add-circle"></ion-icon>
@@ -39,13 +39,13 @@
         </ul>
     </div>
 
-    <div class="pagina-de-um-quizz">
+    <div class="pagina-de-um-quizz escondido">
         <div class="banner-titulo-quizz">
             O quão Potterhead é você?
         </div>
         <ul class="lista-perguntas-quizz">
             <li class="pergunta-quizz">
-                <div class="titulo-quizz">
+                <div class="titulo-pergunta-quizz">
                     Em qual animal Olho-Tonto Moody transfigurou Malfoy?
                 </div>
                 <div class="container-opcoes-quizz">
@@ -68,7 +68,7 @@
                 </div>
             </li>
             <li class="pergunta-quizz">
-                <div class="titulo-quizz">
+                <div class="titulo-pergunta-quizz">
                     Qual dos objetos abaixo NÃO é uma horcrux?
                 </div>
                 <div class="container-opcoes-quizz">
@@ -99,7 +99,7 @@
             <span>Parabéns Potterhead! Bem-vindo a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.</span>
         </div>
         <button class="escondido" onclick="reiniciarQuizz()">Reiniciar Quizz</button>
-        <span class="voltar-home escondido">Voltar para home</span>
+        <span class="voltar-home escondido" onclick="voltarHome()">Voltar para home</span>
     </div>
 
     <div class="criacao-de-quizz escondido">
