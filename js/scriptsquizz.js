@@ -34,6 +34,8 @@ function renderizarQuizzUnico() {
     elementoUl.innerHTML = "";
     elementoContainerOpcoesQuizz.innerHTML = "";
 
+    randomizarRespostas();
+
     for (let i = 0; i < arrayQuizzUnico.questions.length; i++) {
         elementoContainerOpcoesQuizz.innerHTML = "";
         for (let y = 0; y < arrayQuizzUnico.questions[i].answers.length; y++) {
@@ -149,4 +151,16 @@ function rolarPaginaBaixo(proximaPergunta) {
 
 function rolarPaginaCima() {
     window.scrollTo({top: 0, left: 0, behavior: "smooth"});
+}
+
+let arrayRespostasRandomizadas = [];
+
+function randomizarRespostas() {
+    for (let i = 0; i < arrayQuizzUnico.questions.length; i++) {
+        arrayQuizzUnico.questions[i].answers.sort(comparador);
+    }
+}
+
+function comparador() {
+    return Math.random() - 0.5;
 }
