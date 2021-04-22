@@ -17,7 +17,7 @@
         BuzzQuizz
     </header>
 
-    <div class="lista-de-quizzes">
+    <div class="lista-de-quizzes escondido">
         <div class="titulo-seus-quizzes escondido">
             <span>Seus Quizzes</span>
             <ion-icon onclick="adicionarQuizz()" name="add-circle"></ion-icon>
@@ -39,7 +39,7 @@
         </ul>
     </div>
 
-    <div class="pagina-de-um-quizz escondido">
+    <div class="pagina-de-um-quizz">
         <div class="banner-titulo-quizz">
             O quão Potterhead é você?
         </div>
@@ -91,15 +91,15 @@
                 </div>
             </li>
         </ul>
-        <div class="resultado-quizz">
+        <div class="resultado-quizz escondido">
             <div class="titulo-resultado-quizz">
                 88% de acerto: Você é praticamente um aluno de Hogwarts!
             </div>
             <img src="https://i.pinimg.com/originals/95/17/4a/95174a038db96f152cf9acc15dd3e9cd.jpg" alt="Meme Dumbledore">
             <span>Parabéns Potterhead! Bem-vindo a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.</span>
         </div>
-        <button>Reiniciar Quizz</button>
-        <span class="voltar-home">Voltar para home</span>
+        <button class="escondido">Reiniciar Quizz</button>
+        <span class="voltar-home escondido">Voltar para home</span>
     </div>
 
     <div class="criacao-de-quizz escondido">
@@ -169,8 +169,8 @@
     
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-    <!-- <script src="./js/scriptsquizz.js"></script> -->
-    <script src="./js/scripts-primeirapag.js"></script>
-    <script src="./js/scripts.js"></script>
+    <!--<script src="./js/scripts.js"></script>-->
+    <script src="./js/scriptsquizz.js"></script>
+    <!--<script src="./js/scripts-primeirapag.js"></script>-->
 </body>
 </html>
