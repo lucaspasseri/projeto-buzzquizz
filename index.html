@@ -22,13 +22,10 @@
             <span>Seus Quizzes</span>
             <ion-icon onclick="adicionarQuizz()" name="add-circle"></ion-icon>
         </div>
-        <ul class="seus-quizzes escondido">
+        <ul class="seus-quizzes">
             <li class="cartao-quizz">
                 <span>Você não criou nenhum quizz ainda :(</span>
                 <button onclick="adicionarQuizz()">Criar Quizz</button>
-            </li>
-            <li class="cartao-quizz">
-                <span>O quão Potterhead é você?</span>
             </li>
         </ul>
 
@@ -150,9 +147,9 @@
             <div class="niveis">
                 <div>
                     <span>Nível 1</span>
-                    <ul>
+                    <ul class="nivel">
                         <li><input type="text" placeholder="Título do nível"></li>
-                        <li><input type="text" placeholder="% de acerto mínima"></li>
+                        <li><input type="number" placeholder="% de acerto mínima"></li>
                         <li><input type="text" placeholder="URL da imagem do nível"></li>
                         <li><textarea rows="4" cols="30" placeholder="Descrição do nível"></textarea></li>
                     </ul>
@@ -172,8 +169,8 @@
     
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-    <script src="./js/scripts.js"></script>
     <!-- <script src="./js/scriptsquizz.js"></script> -->
     <script src="./js/scripts-primeirapag.js"></script>
+    <script src="./js/scripts.js"></script>
 </body>
 </html>

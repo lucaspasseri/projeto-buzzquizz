@@ -16,7 +16,6 @@ function processarResposta(resposta) {
                 <span>${resposta.data[i].title}</span>
             </li>`;
         let seletorUltimaLI = seletorTodosOsQuizzes.querySelector("li:last-of-type");
-        console.log(seletorUltimaLI, resposta.data[i].image);
         seletorUltimaLI.style.backgroundImage = `url('${resposta.data[i].image}')`;
     }
 }
