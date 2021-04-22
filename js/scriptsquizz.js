@@ -22,7 +22,7 @@ function sucessoCarregarQuizzes(resposta) {
             </li>`;
         let seletorUltimaLI = seletorTodosOsQuizzes.querySelector("li:last-of-type");
         seletorUltimaLI.style.backgroundImage = `
-            linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url('${resposta.data[i].image}')
+            linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1)), url('${resposta.data[i].image}')
         `;
     }
 }
