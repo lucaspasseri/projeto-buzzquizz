@@ -23,6 +23,10 @@ function sucessoCarregarSeusQuizzes(resposta){
         seletorListaSeusQuizzes.innerHTML += `
         <li onclick='abrirQuizzUnico(${resposta.data[i].id})' class="cartao-quizz">
             <span>${resposta.data[i].title}</span>
+            <div class="editar-excluir">
+                <ion-icon name="create-outline"></ion-icon>
+                <ion-icon name="trash-outline"></ion-icon>
+            </div>
         </li>`;
         let seletorUltimaLI = seletorListaSeusQuizzes.querySelector("li:last-of-type");
         seletorUltimaLI.style.backgroundImage = `
