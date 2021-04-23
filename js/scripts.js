@@ -284,6 +284,7 @@ function finalizarQuizz(){
     const promessa = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes', novoQuizz);
     promessa.then(processarResposta);
     promessa.catch(processarFalhaResposta);
+    elementoCarregando.classList.remove("escondido");
   } else {
     alert("Preencha os campos corretamente. Tente:\n   Título: caracteres > 9  \n   % de acertos: valor entre 0 e 100"
     + "\n   URL da imagem: válida\n   Descrição: caracteres > 29   \n   *Todos os níveis devem ser preenchidos." +
@@ -291,6 +292,7 @@ function finalizarQuizz(){
   }   
 }
 function processarResposta(resposta){
+  elementoCarregando.classList.add("escondido");
   console.log("VOLTOU DO SERVIDOR!", resposta);
 
   let listaID = JSON.parse(localStorage.getItem("listaID"));

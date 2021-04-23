@@ -3,15 +3,18 @@ let arrayQuizzUnico;
 let totalAcertos = 0;
 let totalRespondido = 0;
 let totalPerguntas = 0;
+const elementoCarregando = document.querySelector(".carregando");
 
 carregarQuizzes();
 
 function carregarQuizzes(){
     const promessa = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes');
     promessa.then(sucessoCarregarQuizzes);
+    elementoCarregando.classList.remove("escondido");
 }
 
 function sucessoCarregarQuizzes(resposta) {
+    elementoCarregando.classList.add("escondido");
     const seletorTodosOsQuizzes = document.querySelector(".todos-os-quizzes");
     seletorTodosOsQuizzes.innerHTML ="";
 
@@ -34,10 +37,11 @@ function abrirQuizzUnico(id) {
     elementoPaginaInicial.classList.add("escondido");
     const elementoPaginaQuizz = document.querySelector(".pagina-de-um-quizz");
     elementoPaginaQuizz.classList.remove("escondido");
-    console.log("ta vindo");
+    elementoCarregando.classList.remove("escondido");
 }
 
 function sucessoReceberQuizzUnico(promessaQuizzUnico) {
+    elementoCarregando.classList.add("escondido");
     arrayQuizzUnico = promessaQuizzUnico.data;
     totalAcertos = 0;
     totalRespondido = 0;
