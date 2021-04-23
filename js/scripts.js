@@ -65,46 +65,53 @@ function criarPerguntas(){
         for(let i = 0; i < seletorInputs[2].value; i++){
           if( i === 0 ){
             seletorPerguntas.innerHTML += `<div>
-                                            <span onclick="selecionarPergunta(this)">Pergunta ${i+1}</span>
-                                            <ul class="pergunta">
-                                              <li><input type="text" placeholder="Texto da pergunta"></li>
-                                              <li><input type="text" placeholder="Cor de fundo da pergunta"></li>
-                                              <span>Resposta correta</span>
-                                              <ul>
-                                                <li><input type="text" placeholder="Resposta correta"></li>
-                                                <li><input type="text" placeholder="URL da imagem"></li>
+                                              <div class="aba-pergunta" onclick="selecionarPergunta(this)">
+                                                <span>Pergunta ${i+1}</span>
+                                                <ion-icon name="create-outline" class="icone-pergunta escondido"></ion-icon>
+                                              </div>
+                                              <ul class="pergunta">
+                                                  <li><input type="text" placeholder="Texto da pergunta"></li>
+                                                  <li><input type="text" placeholder="Cor de fundo da pergunta"></li>
+                                                  <span>Resposta correta</span>
+                                                  <ul>
+                                                    <li><input type="text" placeholder="Resposta correta"></li>
+                                                    <li><input type="text" placeholder="URL da imagem"></li>
+                                                  </ul>
+                                                  <span>Respostas incorretas</span>
+                                                  <ul>
+                                                      <li><input type="text" placeholder="Resposta incorreta 1"></li>
+                                                      <li><input type="text" placeholder="URL da imagem 1"></li>
+                                                      <li><input type="text" placeholder="Resposta incorreta 2"></li>
+                                                      <li><input type="text" placeholder="URL da imagem 2"></li>
+                                                      <li><input type="text" placeholder="Resposta incorreta 3"></li>
+                                                      <li><input type="text" placeholder="URL da imagem 3"></li>
+                                                  </ul>               
                                               </ul>
-                                              <span>Respostas incorretas</span>
-                                              <ul>
-                                                <li><input type="text" placeholder="Resposta incorreta 1"></li>
-                                                <li><input type="text" placeholder="URL da imagem 1"></li>
-                                                <li><input type="text" placeholder="Resposta incorreta 2"></li>
-                                                <li><input type="text" placeholder="URL da imagem 2"></li>
-                                                <li><input type="text" placeholder="Resposta incorreta 3"></li>
-                                                <li><input type="text" placeholder="URL da imagem 3"></li>
-                                              </ul>   
-                                            </ul>
-                                          </div>`;
+                                            </div>`;
           } else {
-            seletorPerguntas.innerHTML +=  `<div>
-                                              <span onclick="selecionarPergunta(this)">Pergunta ${i+1}</span>
+            seletorPerguntas.innerHTML +=  
+                                            `<div>
+                                              <div class="aba-pergunta" onclick="selecionarPergunta(this)">
+                                                <span>Pergunta ${i+1}</span>
+                                                <ion-icon name="create-outline" class="icone-pergunta"></ion-icon>
+                                              </div>
                                               <ul class="pergunta escondido">
-                                                <li><input type="text" placeholder="Texto da pergunta"></li>
-                                                <li><input type="text" placeholder="Cor de fundo da pergunta"></li>
-                                                <span>Resposta correta</span>
-                                                <ul>
-                                                  <li><input type="text" placeholder="Resposta correta"></li>
-                                                  <li><input type="text" placeholder="URL da imagem"></li>
-                                                </ul>
-                                                <span>Respostas incorretas</span>
-                                                <ul>
-                                                  <li><input type="text" placeholder="Resposta incorreta 1"></li>
-                                                  <li><input type="text" placeholder="URL da imagem 1"></li>
-                                                  <li><input type="text" placeholder="Resposta incorreta 2"></li>
-                                                  <li><input type="text" placeholder="URL da imagem 2"></li>
-                                                  <li><input type="text" placeholder="Resposta incorreta 3"></li>
-                                                  <li><input type="text" placeholder="URL da imagem 3"></li>
-                                                </ul>   
+                                                  <li><input type="text" placeholder="Texto da pergunta"></li>
+                                                  <li><input type="text" placeholder="Cor de fundo da pergunta"></li>
+                                                  <span>Resposta correta</span>
+                                                  <ul>
+                                                    <li><input type="text" placeholder="Resposta correta"></li>
+                                                    <li><input type="text" placeholder="URL da imagem"></li>
+                                                  </ul>
+                                                  <span>Respostas incorretas</span>
+                                                  <ul>
+                                                      <li><input type="text" placeholder="Resposta incorreta 1"></li>
+                                                      <li><input type="text" placeholder="URL da imagem 1"></li>
+                                                      <li><input type="text" placeholder="Resposta incorreta 2"></li>
+                                                      <li><input type="text" placeholder="URL da imagem 2"></li>
+                                                      <li><input type="text" placeholder="Resposta incorreta 3"></li>
+                                                      <li><input type="text" placeholder="URL da imagem 3"></li>
+                                                  </ul>               
                                               </ul>
                                             </div>`;
           }  
@@ -172,27 +179,33 @@ function criarNiveis(){
 
     const seletorNiveis = document.querySelector(".niveis");
     seletorNiveis.innerHTML="";
-    for(let i = 0; i < novoQuizz.levels.length; i++){
-      if(i === 0){
+    for(let i = 0; i < novoQuizz.levels.length; i++){ 
+      if(i === 0){  
         seletorNiveis.innerHTML += `<div>
-                                    <span onclick="selecionarNivel(this)">Nível ${i+1}</span>
-                                    <ul class="nivel">
+                                      <div class="aba-nivel" onclick="selecionarNivel(this)">
+                                        <span>Nível ${i+1}</span>
+                                        <ion-icon name="create-outline" class="icone-nivel escondido"></ion-icon>
+                                      </div>
+                                      <ul class="nivel">
                                         <li><input type="text" placeholder="Título do nível"></li>
                                         <li><input type="number" placeholder="% de acerto mínima"></li>
                                         <li><input type="text" placeholder="URL da imagem do nível"></li>
                                         <li><textarea rows="4" cols="30" placeholder="Descrição do nível"></textarea></li>
-                                    </ul>
-                                  </div>`;
+                                      </ul>
+                                    </div>`;
       } else {
         seletorNiveis.innerHTML += `<div>
-                                    <span onclick="selecionarNivel(this)">Nível ${i+1}</span>
-                                    <ul class="nivel escondido">
+                                      <div class="aba-nivel" onclick="selecionarNivel(this)">
+                                        <span>Nível ${i+1}</span>
+                                        <ion-icon name="create-outline" class="icone-nivel"></ion-icon>
+                                      </div>
+                                      <ul class="nivel escondido">
                                         <li><input type="text" placeholder="Título do nível"></li>
                                         <li><input type="number" placeholder="% de acerto mínima"></li>
                                         <li><input type="text" placeholder="URL da imagem do nível"></li>
                                         <li><textarea rows="4" cols="30" placeholder="Descrição do nível"></textarea></li>
-                                    </ul>
-                                  </div>`;
+                                      </ul>
+                                    </div>`;
       }
     }
     
@@ -317,20 +330,27 @@ function voltarPaginaInicial(){
 }
 function selecionarPergunta(elemento){
   const seletorTodasPerguntas = document.querySelectorAll(".pergunta");
+  const seletorTodosIconesPergunta = document.querySelectorAll(".icone-pergunta");
   for(let i = 0; i < seletorTodasPerguntas.length; i++){
     seletorTodasPerguntas[i].classList.add("escondido");
+    seletorTodosIconesPergunta[i].classList.remove("escondido");
   }
   const seletorUL = elemento.parentNode.querySelector("ul");
   seletorUL.classList.remove("escondido");
+  const seletorIconePergunta = elemento.parentNode.querySelector(".icone-pergunta");
+  seletorIconePergunta.classList.add("escondido");
 }
 function selecionarNivel(elemento){
   const seletorTodosNiveis = document.querySelectorAll(".nivel");
+  const seletorTodosIconesNivel = document.querySelectorAll(".icone-nivel");
   for(let i = 0; i < seletorTodosNiveis.length; i++){
     seletorTodosNiveis[i].classList.add("escondido");
+    seletorTodosIconesNivel[i].classList.remove("escondido");
   }
-
   const seletorUL = elemento.parentNode.querySelector("ul");
-  seletorUL.classList.toggle("escondido");
+  seletorUL.classList.remove("escondido");
+  const seletorIconeNivel = elemento.parentNode.querySelector(".icone-nivel");
+  seletorIconeNivel.classList.add("escondido");
 }
 
 function unicoQuizz(){

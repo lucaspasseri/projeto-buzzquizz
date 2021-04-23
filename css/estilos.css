@@ -225,9 +225,8 @@ header {
 
 .apresentacao {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 71px;
+    height: 90px;
+    align-items: flex-end;
     margin-bottom: 27px;
     font-weight: bold;
     font-size: 23px;
@@ -238,6 +237,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 61px;
 }
 
 .primeira-parte ul {
@@ -251,11 +251,17 @@ header {
 }
 
 .perguntas, .niveis {
-    background-color: #FFFFFF;
-    width: 100vw;
+    background-color: #fafafa;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.perguntas > div, .niveis > div {
+    background-color: #FFFFFF;
+    padding: 18px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
+    margin-bottom: 24px;
 }
 .perguntas span, .niveis span {
     font-weight: bold;
@@ -264,6 +270,18 @@ header {
     margin-bottom: 18px;
     margin-top: 26px;
     display: inline-block;
+    font-family: 'Roboto';
+}
+
+.pergunta-falsa, .nivel-falso, .aba-pergunta, .aba-nivel {
+    width: 564px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icone-pergunta, .icone-nivel {
+    font-size: 30px;
 }
 
 input {
@@ -298,7 +316,7 @@ input::placeholder, textarea::placeholder {
 textarea {
     border: 1px solid #D1D1D1;
     border-radius: 5px;
-    width: 341px;
+    width: 564px;
     height: 177px;
     font-style: italic;
     font-size: 19px;
@@ -347,16 +365,12 @@ textarea {
         margin-top: 31px;
     }
 
-    .apresentacao {
-        margin-top: 37px;
-    }
-
-    .primeira-parte ul {
-        width: 100vw;
-    }
-
-    input {
+    input, textarea, .pergunta-falsa, .nivel-falso, .aba-pergunta, .aba-nivel {
         width: calc(100vw - 36px);
+    }
+    .apresentacao {
+        align-items: center;
+        margin-bottom: 0;
     }
 }
 
