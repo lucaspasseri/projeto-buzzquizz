@@ -201,3 +201,7 @@ function voltarHome() {
     rolarPaginaCima();
     carregarQuizzes();
 }
+
+function deletarQuizz() {
+    const listaKey = JSON.parse(localStorage.getItem("listaKey"));
+}

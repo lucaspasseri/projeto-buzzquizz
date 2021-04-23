@@ -307,6 +307,16 @@ function processarResposta(resposta){
   listaID.push(resposta.data.id);
   localStorage.setItem("listaID", JSON.stringify(listaID));
 
+  let listaKey = JSON.parse(localStorage.getItem("listaKey"));
+  if(localStorage.getItem("listaKey")===null){
+    listaKey = [];
+  }
+
+  listaKey.push(resposta.data.key);
+  localStorage.setItem("listaKey", JSON.stringify(listaKey));
+
+  console.log(listaKey);
+
   const seletorCartaoQuizz = document.querySelector(".quarta-parte .cartao-quizz");
   seletorCartaoQuizz.innerHTML = `<span>${novoQuizz.title}</span>`;
   seletorCartaoQuizz.style.backgroundImage = `
