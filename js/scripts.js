@@ -1,5 +1,43 @@
 const novoQuizz = {};
 
+carregarSeusQuizzes();
+
+function carregarSeusQuizzes(){
+  const listaID = JSON.parse(localStorage.getItem("listaID"));
+
+  if(listaID !== null){
+    const promessa = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes');
+    promessa.then(sucessoCarregarSeusQuizzes);
+  }
+  
+}
+
+function sucessoCarregarSeusQuizzes(resposta){
+  const seletorListaSeusQuizzes = document.querySelector(".seus-quizzes");
+  seletorListaSeusQuizzes.innerHTML = "";
+  const listaID = JSON.parse(localStorage.getItem("listaID"));
+
+  for(let i = 0; i< resposta.data.length; i++){
+    for(let n = 0; n < listaID.length; n++){
+      if(resposta.data[i].id === listaID[n]){
+        seletorListaSeusQuizzes.innerHTML += `
+        <li onclick='abrirQuizzUnico(${resposta.data[i].id})' class="cartao-quizz">
+            <span>${resposta.data[i].title}</span>
+        </li>`;
+        let seletorUltimaLI = seletorListaSeusQuizzes.querySelector("li:last-of-type");
+        seletorUltimaLI.style.backgroundImage = `
+        linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1)), url('${resposta.data[i].image}')
+        `;
+      }
+    }
+  }
+
+  seletorListaSeusQuizzes.classList.remove("escondido");
+  seletorNenhumQuizzCriado = document.querySelector(".nenhum-quizz-criado");
+  seletorNenhumQuizzCriado.classList.add("escondido");
+  seletorTituloSeusQuizzes = document.querySelector(".titulo-seus-quizzes");
+  seletorTituloSeusQuizzes.classList.remove("escondido");
+}
 
 function adicionarQuizz(){
     const seletorListaDeQuizzes = document.querySelector(".lista-de-quizzes");
@@ -125,6 +163,7 @@ function criarNiveis(){
       perguntasValidadas = perguntasValidadas && validacaoPerguntas[i];
     }
   }
+
   if(perguntasValidadas){
     const seletorSegundaParte = document.querySelector(".segunda-parte");
     seletorSegundaParte.classList.add("escondido");
@@ -190,9 +229,9 @@ function isValidHex(color) {
     if(color.substring(0, 1) === '#') color = color.substring(1);
 
     switch(color.length) {
-      //case 3: return /^[0-9A-F]{3}$/i.test(color);
+      case 3: return /^[0-9A-F]{3}$/i.test(color);
       case 6: return /^[0-9A-F]{6}$/i.test(color);
-      //case 8: return /^[0-9A-F]{8}$/i.test(color);
+      case 8: return /^[0-9A-F]{8}$/i.test(color);
       default: return false;
     }
   }
@@ -252,15 +291,26 @@ function finalizarQuizz(){
   }   
 }
 function processarResposta(resposta){
-  console.log("VOLTOU DO SERVIDOR!");
-  console.log(resposta);
-  console.log(resposta.data.id);
-  localStorage.setItem("id", resposta.data.id);
+  console.log("VOLTOU DO SERVIDOR!", resposta);
+
+  let listaID = JSON.parse(localStorage.getItem("listaID"));
+  if(localStorage.getItem("listaID")===null){
+    listaID = [];
+  }
+  
+  listaID.push(resposta.data.id);
+  localStorage.setItem("listaID", JSON.stringify(listaID));
+
+  const seletorCartaoQuizz = document.querySelector(".quarta-parte .cartao-quizz");
+  seletorCartaoQuizz.innerHTML = `<span>${novoQuizz.title}</span>`;
+  seletorCartaoQuizz.style.backgroundImage = `
+  linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1)), url('${novoQuizz.image}')
+`;
+  
 }
 function processarFalhaResposta(erro){
-  console.log("FALHOU!");
-  console.log(erro.response.status);
-}
+  console.log("FALHOU!", erro.response.status);
+} 
 
 function voltarPaginaInicial(){
     window.location.reload();
@@ -275,7 +325,8 @@ function selecionarNivel(elemento){
 }
 
 function unicoQuizz(){
-    const id = localStorage.getItem("id");
+    const listaID = JSON.parse(localStorage.getItem("listaID"));
+    const id = listaID[listaID.length-1];
     const promessaQuizzUnico = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes/${id}`);
     promessaQuizzUnico.then(sucessoReceberQuizzUnico);
     

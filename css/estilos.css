@@ -246,3 +246,20 @@ header {
 .escondido {
     display: none;
 }
+
+.apresentacao {
+    background-color: #fafafa;
+    height: 89px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.apresentacao span {
+    width: 195px;
+    height: 23px;
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+}
