@@ -249,6 +249,12 @@ header {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
     padding: 18px;
 }
+.primeira-parte ul div {
+    margin-top: -10px;
+    margin-bottom: 10px;
+    color: #EC362D;
+    width: 100%;
+}
 
 .perguntas, .niveis {
     background-color: #fafafa;
@@ -376,4 +382,9 @@ textarea {
 
 .escondido {
     display: none;
+}
+
+.invalido {
+    background-color: #ffe9e9;
+    height: 50px;
 }

@@ -71,11 +71,15 @@ function criarPerguntas(){
                                               </div>
                                               <ul class="pergunta">
                                                   <li><input type="text" placeholder="Texto da pergunta"></li>
+                                                  <div class="escondido">Título do quizz: deve ter entre 20 e 60 caracteres</div>
                                                   <li><input type="text" placeholder="Cor de fundo da pergunta"></li>
+                                                  <div class="escondido">Título do quizz: deve ter entre 20 e 60 caracteres</div>
                                                   <span>Resposta correta</span>
                                                   <ul>
                                                     <li><input type="text" placeholder="Resposta correta"></li>
+                                                    <div class="escondido">Título do quizz: deve ter entre 20 e 60 caracteres</div>
                                                     <li><input type="text" placeholder="URL da imagem"></li>
+                                                    <div class="escondido">Título do quizz: deve ter entre 20 e 60 caracteres</div>
                                                   </ul>
                                                   <span>Respostas incorretas</span>
                                                   <ul>
@@ -85,6 +89,7 @@ function criarPerguntas(){
                                                       <li><input type="text" placeholder="URL da imagem 2"></li>
                                                       <li><input type="text" placeholder="Resposta incorreta 3"></li>
                                                       <li><input type="text" placeholder="URL da imagem 3"></li>
+                                                      <div class="escondido">Título do quizz: deve ter entre 20 e 60 caracteres</div>
                                                   </ul>               
                                               </ul>
                                             </div>`;
@@ -126,8 +131,35 @@ function criarPerguntas(){
         for(let i = 0; i < seletorInputs[3].value; i++)
           novoQuizz.levels.push({});
     } else {
-      alert("Preencha os campos corretamente. Tente:\n   Título: caracteres entre 20 e 65\n   URL da imagem: válida"
-      + "\n   Perguntas: > 2\n   Niveis: > 1");
+      const seletorAlertas = document.querySelectorAll(".primeira-parte ul div");
+      if(!caracteresDoTitulo){
+        seletorInputs[0].classList.add("invalido");
+        seletorAlertas[0].classList.remove("escondido");
+      } else {
+        seletorInputs[0].classList.remove("invalido");
+        seletorAlertas[0].classList.add("escondido");
+      }
+      if(!formatoURL){
+        seletorInputs[1].classList.add("invalido");
+        seletorAlertas[1].classList.remove("escondido");
+      } else {
+        seletorInputs[1].classList.remove("invalido");
+        seletorAlertas[1].classList.add("escondido");
+      }
+      if(!quantidadeValidaPerguntas){
+        seletorInputs[2].classList.add("invalido");
+        seletorAlertas[2].classList.remove("escondido");
+      } else {
+        seletorInputs[2].classList.remove("invalido");
+        seletorAlertas[2].classList.add("escondido");
+      }
+      if(!quantidadeValidaNiveis){
+        seletorInputs[3].classList.add("invalido");
+        seletorAlertas[3].classList.remove("escondido");
+      } else {
+        seletorInputs[3].classList.remove("invalido");
+        seletorAlertas[3].classList.add("escondido");
+      }
     }   
 }
 function validURL(str) {
@@ -229,10 +261,46 @@ function criarNiveis(){
       }
     }
   } else {
-    alert("Preencha os campos corretamente. Tente:\n   Texto das perguntas: caracteres > 19" + 
+    /* alert("Preencha os campos corretamente. Tente:\n   Texto das perguntas: caracteres > 19" + 
     "\n   Cor de fundo: valor hexadecimal (6 dígitos)"
     + "\n   Texto das respostas: caracteres > 0\n   URL da imagem: válida" + 
-    "\n   *Todas as perguntas devem ser preenchidas.\n   *Uma resposta correta e pelo menos uma incorreta são obrigatórias.");
+    "\n   *Todas as perguntas devem ser preenchidas.\n   *Uma resposta correta e pelo menos uma incorreta são obrigatórias."); */
+      const seletorAlertas = document.querySelectorAll(".pergunta div");
+      const seletorPerguntas = document.querySelectorAll(".pergunta");
+      //let seletorInputs = seletorPergunta[i].querySelectorAll("input");
+
+      let caracteresDaPergunta = seletorInputs[0].value.length > 19;
+      let hexCorDeFundo = isValidHex(seletorInputs[1].value);
+      let respostaCorretaPreenchida = seletorInputs[2].value.trim().length !== 0;
+      let respostaCorretaURLPreenchida = validURL(seletorInputs[3].value);
+      if(!caracteresDaPergunta){
+        seletorInputs[0].classList.add("invalido");
+        seletorAlertas[0].classList.remove("escondido");
+      } else {
+        seletorInputs[0].classList.remove("invalido");
+        seletorAlertas[0].classList.add("escondido");
+      }
+      if(!hexCorDeFundo){
+        seletorInputs[1].classList.add("invalido");
+        seletorAlertas[1].classList.remove("escondido");
+      } else {
+        seletorInputs[1].classList.remove("invalido");
+        seletorAlertas[1].classList.add("escondido");
+      }
+      if(!quantidadeValidaPerguntas){
+        seletorInputs[2].classList.add("invalido");
+        seletorAlertas[2].classList.remove("escondido");
+      } else {
+        seletorInputs[2].classList.remove("invalido");
+        seletorAlertas[2].classList.add("escondido");
+      }
+      if(!quantidadeValidaNiveis){
+        seletorInputs[3].classList.add("invalido");
+        seletorAlertas[3].classList.remove("escondido");
+      } else {
+        seletorInputs[3].classList.remove("invalido");
+        seletorAlertas[3].classList.add("escondido");
+      }
   }   
 }
 function isValidHex(color) {
@@ -340,7 +408,7 @@ function selecionarPergunta(elemento){
   const seletorIconePergunta = elemento.parentNode.querySelector(".icone-pergunta");
   seletorIconePergunta.classList.add("escondido");
 }
-function selecionarNivel(elemento){
+function selecionarNivel(elemento){ 
   const seletorTodosNiveis = document.querySelectorAll(".nivel");
   const seletorTodosIconesNivel = document.querySelectorAll(".icone-nivel");
   for(let i = 0; i < seletorTodosNiveis.length; i++){
