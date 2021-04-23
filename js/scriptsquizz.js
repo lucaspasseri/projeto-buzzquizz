@@ -137,7 +137,7 @@ function verificarPontuacao() {
     for (let i = 0; i < arrayQuizzUnico.levels.length; i++) {
         if (resultado >= arrayQuizzUnico.levels[i].minValue) {
             const elementoTituloResultadoQuizz = document.querySelector(".titulo-resultado-quizz");
-            elementoTituloResultadoQuizz.innerHTML = `${arrayQuizzUnico.levels[i].title}`;
+            elementoTituloResultadoQuizz.innerHTML = `${resultado}% de acerto: ${arrayQuizzUnico.levels[i].title}`;
             const elementoImagemResultadoQuizz = document.querySelector(".resultado-quizz img");
             elementoImagemResultadoQuizz.setAttribute("src", `${arrayQuizzUnico.levels[i].image}`);
             const elementoDescricaoResultadoQuizz = document.querySelector(".resultado-quizz span");
