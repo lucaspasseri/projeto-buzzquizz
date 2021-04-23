@@ -17,7 +17,7 @@
         BuzzQuizz
     </header>
 
-    <div class="lista-de-quizzes escondido">
+    <div class="lista-de-quizzes">
         <div class="nenhum-quizz-criado">
             <span>Você não criou nenhum</br>quizz ainda :(</span>
             <button onclick="adicionarQuizz()">Criar Quizz</button>
@@ -98,14 +98,16 @@
             <div class="titulo-resultado-quizz">
                 88% de acerto: Você é praticamente um aluno de Hogwarts!
             </div>
-            <img src="https://i.pinimg.com/originals/95/17/4a/95174a038db96f152cf9acc15dd3e9cd.jpg" alt="Meme Dumbledore">
-            <span>Parabéns Potterhead! Bem-vindo a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.</span>
+            <div class="descricao-resultado">
+                <img src="https://i.pinimg.com/originals/95/17/4a/95174a038db96f152cf9acc15dd3e9cd.jpg" alt="Meme Dumbledore">
+                <span>Parabéns Potterhead! Bem-vindo a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.</span>
+            </div>
         </div>
         <button class="escondido" onclick="reiniciarQuizz()">Reiniciar Quizz</button>
         <span class="voltar-home escondido" onclick="voltarPaginaInicial()">Voltar para home</span>
     </div>
 
-    <div class="criacao-de-quizz">
+    <div class="criacao-de-quizz escondido">
         <div class="primeira-parte">
             <div class="apresentacao"><span>Comece pelo começo</span></div>
             <ul>
