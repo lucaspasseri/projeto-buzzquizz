@@ -17,11 +17,14 @@
         BuzzQuizz
     </header>
 
+<<<<<<< HEAD
     <div class="carregando escondido">
         <img src="./medias/gif-loading.gif" alt="GIF de carregando a página">
         Carregando
     </div>
 
+=======
+>>>>>>> 310b4821678de0d553a7b27eca0e9e32798be6f5
     <div class="lista-de-quizzes">
         <div class="nenhum-quizz-criado">
             <span>Você não criou nenhum</br>quizz ainda :(</span>
@@ -92,14 +95,17 @@
             <div class="apresentacao"><span>Crie suas perguntas</span></div>
             <div class="perguntas">
                 <div>
-                    <span>Pergunta 1</span>
+                    <div class="aba-pergunta" onclick="selecionarPergunta(this)">
+                      <span>Pergunta 1</span>
+                      <ion-icon name="create-outline" class="icone-pergunta escondido"></ion-icon>
+                    </div>
                     <ul class="pergunta">
                         <li><input type="text" placeholder="Texto da pergunta"></li>
                         <li><input type="text" placeholder="Cor de fundo da pergunta"></li>
                         <span>Resposta correta</span>
                         <ul>
-                            <li><input type="text" placeholder="Resposta correta"></li>
-                            <li><input type="text" placeholder="URL da imagem"></li>
+                          <li><input type="text" placeholder="Resposta correta"></li>
+                          <li><input type="text" placeholder="URL da imagem"></li>
                         </ul>
                         <span>Respostas incorretas</span>
                         <ul>
@@ -111,9 +117,21 @@
                             <li><input type="text" placeholder="URL da imagem 3"></li>
                         </ul>               
                     </ul>
+                  </div>
+                <div>
+                    <div class="aba-pergunta" onclick="selecionarPergunta(this)">
+                        <span>Pergunta 2</span>
+                        <ion-icon name="create-outline" class="icone-pergunta escondido"></ion-icon>
+                    </div>
+                    <ul class="pergunta-falsa"></ul>
                 </div>
-                <div><span>Pergunta 2</span></div>
-                <div><span>Pergunta 3</span></div>
+                <div>
+                    <div class="aba-pergunta" onclick="selecionarPergunta(this)">
+                        <span>Pergunta 3</span>
+                        <ion-icon name="create-outline" class="icone-pergunta escondido"></ion-icon>
+                      </div>
+                    <ul class="pergunta-falsa"></ul>
+                </div>
             </div>
             <button onclick="criarNiveis()">Prosseguir para criar níveis</button>
         </div>
@@ -129,8 +147,8 @@
                         <li><textarea rows="4" cols="30" placeholder="Descrição do nível"></textarea></li>
                     </ul>
                 </div>
-                <div><span>Nível 2</span></div>
-                <div><span>Nível 3</span></div>
+                <div><span>Nível 2</span><ul class="nivel-falso"></ul></div>
+                <div><span>Nível 3</span><ul class="nivel-falso"></ul></div>
             </div>
             <button onclick="finalizarQuizz()">Finalizar Quizz</button>
         </div>
