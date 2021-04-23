@@ -23,6 +23,10 @@ function sucessoCarregarSeusQuizzes(resposta){
         seletorListaSeusQuizzes.innerHTML += `
         <li onclick='abrirQuizzUnico(${resposta.data[i].id})' class="cartao-quizz">
             <span>${resposta.data[i].title}</span>
+            <div class="editar-excluir">
+                <ion-icon name="create-outline"></ion-icon>
+                <ion-icon name="trash-outline"></ion-icon>
+            </div>
         </li>`;
         let seletorUltimaLI = seletorListaSeusQuizzes.querySelector("li:last-of-type");
         seletorUltimaLI.style.backgroundImage = `
@@ -365,6 +369,7 @@ function finalizarQuizz(){
     const promessa = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes', novoQuizz);
     promessa.then(processarResposta);
     promessa.catch(processarFalhaResposta);
+    elementoCarregando.classList.remove("escondido");
   } else {
     alert("Preencha os campos corretamente. Tente:\n   Título: caracteres > 9  \n   % de acertos: valor entre 0 e 100"
     + "\n   URL da imagem: válida\n   Descrição: caracteres > 29   \n   *Todos os níveis devem ser preenchidos." +
@@ -372,6 +377,7 @@ function finalizarQuizz(){
   }   
 }
 function processarResposta(resposta){
+  elementoCarregando.classList.add("escondido");
   console.log("VOLTOU DO SERVIDOR!", resposta);
 
   let listaID = JSON.parse(localStorage.getItem("listaID"));
@@ -381,6 +387,16 @@ function processarResposta(resposta){
 
   listaID.push(resposta.data.id);
   localStorage.setItem("listaID", JSON.stringify(listaID));
+
+  let listaKey = JSON.parse(localStorage.getItem("listaKey"));
+  if(localStorage.getItem("listaKey")===null){
+    listaKey = [];
+  }
+
+  listaKey.push(resposta.data.key);
+  localStorage.setItem("listaKey", JSON.stringify(listaKey));
+
+  console.log(listaKey);
 
   const seletorCartaoQuizz = document.querySelector(".quarta-parte .cartao-quizz");
   seletorCartaoQuizz.innerHTML = `<span>${novoQuizz.title}</span>`;

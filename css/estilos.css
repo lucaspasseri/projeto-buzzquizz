@@ -27,6 +27,17 @@ header {
     z-index: 1;
 }
 
+.carregando {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    color: #EC362D;
+}
+
 .criacao-de-quizz {
     margin-top: 69px;
 }
@@ -42,7 +53,6 @@ header {
     width: 100%;
     height: 142px;
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://images.ctfassets.net/usf1vwtuqyxm/7EsDSrJhr0pNwUNK8lrUwY/f8d7e5101de6dda8f46c0f94673087a9/HP-Hogwarts-39PHOTOBU17074_PHUP_HP.jpg");
-    opacity: 0.6;
     background-position-y: 30%;
     background-size: cover;
     color: #FFFFFF;
@@ -136,11 +146,75 @@ header {
     margin-top: 34px;
     cursor: pointer;
 }
+
 .pagina-de-um-quizz .voltar-home {
     color: #818181;
     font-size: 18px;
     margin: 20px 0;
     cursor: pointer;
+}
+
+@media (min-width: 1100px) {
+    .banner-titulo-quizz {
+        width: 100vw;
+        height: 277px;
+        font-size: 39px;
+    }
+
+    .pergunta-quizz, .resultado-quizz {
+        width: 759px;
+        padding: 28px 35px 18px 35px;
+        margin-top: 40px;
+    }
+
+    .titulo-pergunta-quizz, .titulo-resultado-quizz {
+        font-size: 23px;
+        height: 138px;
+        margin-bottom: 20px;
+    }
+
+    .container-opcoes-quizz {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .pergunta-quizz-opcao {
+        width: 330px;
+        font-size: 20px;
+        margin-bottom: 21px;
+    }
+
+    .pergunta-quizz-opcao img {
+        width: 330px;
+        height: 175px;
+    }
+
+    .resultado-quizz img {
+        width: 364px;
+        height: 273px;
+        margin-bottom: 12px;
+        margin-right: 20px;
+    }
+
+    .resultado-quizz span {
+        font-size: 19px;
+        display: inline-block;
+    }
+
+    .descricao-resultado {
+        display: flex;
+    }
+
+    .pagina-de-um-quizz button {
+        width: 260px;
+        height: 52px;
+        font-size: 21px;
+    }
+
+    .pagina-de-um-quizz .voltar-home {
+        font-size: 21px;
+    }
 }
 
 .lista-de-quizzes {
@@ -215,12 +289,33 @@ header {
     word-break: break-all;
     display: flex;
     align-items: flex-end;
+    position: relative;
 }
 
 .cartao-quizz span {
     font-size: 19px;
     line-height: 22px;
     color: #FFFFFF;
+}
+
+.editar-excluir {
+    width: 43px;
+    height: 87px;
+    background-color: #EC362D;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 10px 0 0 10px;
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
+
+.editar-excluir ion-icon {
+    font-size: 20px;
+    cursor: pointer;
 }
 
 .apresentacao {
@@ -269,6 +364,7 @@ header {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
     margin-bottom: 24px;
 }
+
 .perguntas span, .niveis span {
     font-weight: bold;
     font-size: 20px;
@@ -301,6 +397,7 @@ input {
     margin-bottom: 9px;
     padding-left: 10px;
 }
+
 input::placeholder, textarea::placeholder {
     color: #BABABA;
 }
@@ -316,7 +413,7 @@ input::placeholder, textarea::placeholder {
     margin-top: 70px;
     cursor: pointer;
     line-height: 21px;
-    padding: 0 25px;
+    padding: 0 20px;
 }
 
 textarea {
@@ -338,6 +435,7 @@ textarea {
     justify-content: center;
     align-items: center;
 }
+
 .voltar-home span {
     font-size: 18px;
     line-height: 21px;

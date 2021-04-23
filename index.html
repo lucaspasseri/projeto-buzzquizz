@@ -17,16 +17,24 @@
         BuzzQuizz
     </header>
 
+<<<<<<< HEAD
+    <div class="carregando escondido">
+        <img src="./medias/gif-loading.gif" alt="GIF de carregando a página">
+        Carregando
+    </div>
+
+=======
+>>>>>>> 310b4821678de0d553a7b27eca0e9e32798be6f5
     <div class="lista-de-quizzes">
         <div class="nenhum-quizz-criado">
             <span>Você não criou nenhum</br>quizz ainda :(</span>
             <button onclick="adicionarQuizz()">Criar Quizz</button>
         </div>
-        <div class="titulo-seus-quizzes escondido">
+        <div class="titulo-seus-quizzes">
             <span>Seus Quizzes</span>
             <ion-icon onclick="adicionarQuizz()" name="add-circle"></ion-icon>
         </div>
-        <ul class="seus-quizzes escondido">
+        <ul class="seus-quizzes">
             <li class="cartao-quizz">
                 <span>Acerte os personagens corretos dos Simpsons e prove seu amor!</span>
             </li>
@@ -39,67 +47,34 @@
             <li class="cartao-quizz">
                 <span>Acerte os personagens corretos dos Simpsons e prove seu amor!</span>
             </li>
+            <li class="cartao-quizz teste">
+                <span>testeee</span>
+                <div class="editar-excluir">
+                    <ion-icon name="create-outline"></ion-icon>
+                    <ion-icon name="trash-outline"></ion-icon>
+                </div>
+            </li>
         </ul>
     </div>
 
     <div class="pagina-de-um-quizz escondido">
         <div class="banner-titulo-quizz">
-            O quão Potterhead é você?
         </div>
         <ul class="lista-perguntas-quizz">
             <li class="pergunta-quizz">
                 <div class="titulo-pergunta-quizz">
-                    Em qual animal Olho-Tonto Moody transfigurou Malfoy?
                 </div>
                 <div class="container-opcoes-quizz">
-                    <div class="pergunta-quizz-opcao correta" onclick="escolherResposta(this)">
-                        <img src="./gato-para-teste.jpg" alt="Gato">
-                        Gatíneo
-                    </div>
-                    <div class="pergunta-quizz-opcao errada" onclick="escolherResposta(this)">
-                        <img src="./gato-para-teste.jpg" alt="Gato">
-                        Ratata
-                    </div>
-                    <div class="pergunta-quizz-opcao errada" onclick="escolherResposta(this)">
-                        <img src="./gato-para-teste.jpg" alt="Gato">
-                        Sapo gordo
-                    </div>
-                    <div class="pergunta-quizz-opcao errada" onclick="escolherResposta(this)">
-                        <img src="./gato-para-teste.jpg" alt="Gato">
-                        Mustela putorius (o Furão)
-                    </div>
-                </div>
-            </li>
-            <li class="pergunta-quizz">
-                <div class="titulo-pergunta-quizz">
-                    Qual dos objetos abaixo NÃO é uma horcrux?
-                </div>
-                <div class="container-opcoes-quizz">
-                    <div class="pergunta-quizz-opcao">
-                        <img src="./gato-para-teste.jpg" alt="Gato">
-                        The boy who lived
-                    </div>
-                    <div class="pergunta-quizz-opcao">
-                        <img src="./gato-para-teste.jpg" alt="Gato">
-                        O livro monstruoso dos monstros
-                    </div>
-                    <div class="pergunta-quizz-opcao">
-                        <img src="./gato-para-teste.jpg" alt="Gato">
-                        Anel velho
-                    </div>
-                    <div class="pergunta-quizz-opcao">
-                        <img src="./gato-para-teste.jpg" alt="Gato">
-                        Diadema da Ravenclaw
-                    </div>
                 </div>
             </li>
         </ul>
         <div class="resultado-quizz escondido">
             <div class="titulo-resultado-quizz">
-                88% de acerto: Você é praticamente um aluno de Hogwarts!
             </div>
-            <img src="https://i.pinimg.com/originals/95/17/4a/95174a038db96f152cf9acc15dd3e9cd.jpg" alt="Meme Dumbledore">
-            <span>Parabéns Potterhead! Bem-vindo a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.</span>
+            <div class="descricao-resultado">
+                <img src="">
+                <span></span>
+            </div>
         </div>
         <button class="escondido" onclick="reiniciarQuizz()">Reiniciar Quizz</button>
         <span class="voltar-home escondido" onclick="voltarPaginaInicial()">Voltar para home</span>
