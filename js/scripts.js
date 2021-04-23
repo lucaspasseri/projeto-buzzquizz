@@ -66,7 +66,7 @@ function criarPerguntas(){
           if( i === 0 ){
             seletorPerguntas.innerHTML += `<div>
                                             <span onclick="selecionarPergunta(this)">Pergunta ${i+1}</span>
-                                            <ul class="pergunta id-${i+1}">
+                                            <ul class="pergunta">
                                               <li><input type="text" placeholder="Texto da pergunta"></li>
                                               <li><input type="text" placeholder="Cor de fundo da pergunta"></li>
                                               <span>Resposta correta</span>
@@ -88,7 +88,7 @@ function criarPerguntas(){
           } else {
             seletorPerguntas.innerHTML +=  `<div>
                                               <span onclick="selecionarPergunta(this)">Pergunta ${i+1}</span>
-                                              <ul class="pergunta id-${i+1} escondido">
+                                              <ul class="pergunta escondido">
                                                 <li><input type="text" placeholder="Texto da pergunta"></li>
                                                 <li><input type="text" placeholder="Cor de fundo da pergunta"></li>
                                                 <span>Resposta correta</span>
@@ -297,7 +297,7 @@ function processarResposta(resposta){
   if(localStorage.getItem("listaID")===null){
     listaID = [];
   }
-  
+
   listaID.push(resposta.data.id);
   localStorage.setItem("listaID", JSON.stringify(listaID));
 
@@ -316,10 +316,19 @@ function voltarPaginaInicial(){
     window.location.reload();
 }
 function selecionarPergunta(elemento){
+  const seletorTodasPerguntas = document.querySelectorAll(".pergunta");
+  for(let i = 0; i < seletorTodasPerguntas.length; i++){
+    seletorTodasPerguntas[i].classList.add("escondido");
+  }
   const seletorUL = elemento.parentNode.querySelector("ul");
-  seletorUL.classList.toggle("escondido");
+  seletorUL.classList.remove("escondido");
 }
 function selecionarNivel(elemento){
+  const seletorTodosNiveis = document.querySelectorAll(".nivel");
+  for(let i = 0; i < seletorTodosNiveis.length; i++){
+    seletorTodosNiveis[i].classList.add("escondido");
+  }
+
   const seletorUL = elemento.parentNode.querySelector("ul");
   seletorUL.classList.toggle("escondido");
 }
