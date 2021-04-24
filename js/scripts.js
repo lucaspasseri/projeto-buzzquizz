@@ -24,8 +24,12 @@ function sucessoCarregarSeusQuizzes(resposta){
         <li onclick='abrirQuizzUnico(${resposta.data[i].id})' class="cartao-quizz">
             <span>${resposta.data[i].title}</span>
             <div class="editar-excluir">
-                <ion-icon name="create-outline"></ion-icon>
-                <ion-icon name="trash-outline"></ion-icon>
+                <div>
+                    <ion-icon name="create-outline"></ion-icon>
+                </div>
+                <div onclick="deletarQuizz(${resposta.data[i].id})">
+                    <ion-icon name="trash-outline"></ion-icon>
+                </div>
             </div>
         </li>`;
         let seletorUltimaLI = seletorListaSeusQuizzes.querySelector("li:last-of-type");
@@ -327,8 +331,6 @@ function processarResposta(resposta){
 
   listaKey.push(resposta.data.key);
   localStorage.setItem("listaKey", JSON.stringify(listaKey));
-
-  console.log(listaKey);
 
   const seletorCartaoQuizz = document.querySelector(".quarta-parte .cartao-quizz");
   seletorCartaoQuizz.innerHTML = `<span>${novoQuizz.title}</span>`;

@@ -24,7 +24,7 @@ header {
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 1;
+    z-index: 2;
 }
 
 .carregando {
@@ -311,6 +311,7 @@ header {
     position: absolute;
     top: 10px;
     right: 0;
+    z-index: 1
 }
 
 .editar-excluir ion-icon {

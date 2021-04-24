@@ -14,7 +14,6 @@ function carregarQuizzes(){
 }
 
 function sucessoCarregarQuizzes(resposta) {
-    elementoCarregando.classList.add("escondido");
     const seletorTodosOsQuizzes = document.querySelector(".todos-os-quizzes");
     seletorTodosOsQuizzes.innerHTML ="";
 
@@ -22,12 +21,22 @@ function sucessoCarregarQuizzes(resposta) {
         seletorTodosOsQuizzes.innerHTML += `
             <li onclick='abrirQuizzUnico(${resposta.data[i].id})' class="cartao-quizz">
                 <span>${resposta.data[i].title}</span>
-            </li>`;
+                <div class="editar-excluir">
+                    <div>
+                        <ion-icon name="create-outline"></ion-icon>
+                    </div>
+                    <div onclick="deletarQuizz(${resposta.data[i].id})">
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </div>
+                </div>
+            </li>
+        `;
         let seletorUltimaLI = seletorTodosOsQuizzes.querySelector("li:last-of-type");
         seletorUltimaLI.style.backgroundImage = `
             linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1)), url('${resposta.data[i].image}')
         `;
     }
+    elementoCarregando.classList.add("escondido");
 }
 
 function abrirQuizzUnico(id) {
@@ -202,6 +211,12 @@ function voltarHome() {
     carregarQuizzes();
 }
 
-function deletarQuizz() {
-    const listaKey = JSON.parse(localStorage.getItem("listaKey"));
+function deletarQuizz(id) {
+    event.stopPropagation();
+    
+    if(confirm("Tem certeza que deseja excluir?")){
+        const promessa = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/buzzquizz/quizzes/${id},`);
+        promessa.then(carregarQuizzes, carregarSeusQuizzes);
+    }
+    
 }
