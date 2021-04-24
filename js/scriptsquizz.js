@@ -21,14 +21,6 @@ function sucessoCarregarQuizzes(resposta) {
         seletorTodosOsQuizzes.innerHTML += `
             <li onclick='abrirQuizzUnico(${resposta.data[i].id})' class="cartao-quizz">
                 <span>${resposta.data[i].title}</span>
-                <div class="editar-excluir">
-                    <div>
-                        <ion-icon name="create-outline"></ion-icon>
-                    </div>
-                    <div onclick="deletarQuizz(${resposta.data[i].id})">
-                        <ion-icon name="trash-outline"></ion-icon>
-                    </div>
-                </div>
             </li>
         `;
         let seletorUltimaLI = seletorTodosOsQuizzes.querySelector("li:last-of-type");
