@@ -344,11 +344,14 @@ header {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
     padding: 18px;
 }
-.primeira-parte ul div {
+.primeira-parte ul div, .pergunta div, .nivel div {
     margin-top: -10px;
     margin-bottom: 10px;
     color: #EC362D;
-    width: 100%;
+    width: 564px;
+}
+.nivel div:last-child {
+    margin-top: 0;
 }
 
 .perguntas, .niveis {
@@ -476,6 +479,9 @@ textarea {
         align-items: center;
         margin-bottom: 0;
     }
+    .pergunta div {
+        width: 100%;
+    }
 }
 
 .escondido {
@@ -484,5 +490,4 @@ textarea {
 
 .invalido {
     background-color: #ffe9e9;
-    height: 50px;
 }

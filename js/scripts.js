@@ -75,15 +75,15 @@ function criarPerguntas(){
                                               </div>
                                               <ul class="pergunta">
                                                   <li><input type="text" placeholder="Texto da pergunta"></li>
-                                                  <div class="escondido">Título do quizz: deve ter entre 20 e 60 caracteres</div>
+                                                  <div class="escondido">Texto da pergunta: no mínimo 20 caracteres</div>
                                                   <li><input type="text" placeholder="Cor de fundo da pergunta"></li>
-                                                  <div class="escondido">Título do quizz: deve ter entre 20 e 60 caracteres</div>
+                                                  <div class="escondido">Cor em hexadecimal (começar em "#", seguida de 6 caracteres, números ou letras de A a F)</div>
                                                   <span>Resposta correta</span>
                                                   <ul>
                                                     <li><input type="text" placeholder="Resposta correta"></li>
-                                                    <div class="escondido">Título do quizz: deve ter entre 20 e 60 caracteres</div>
+                                                    <div class="escondido">Texto da resposta correta não pode estar vazio</div>
                                                     <li><input type="text" placeholder="URL da imagem"></li>
-                                                    <div class="escondido">Título do quizz: deve ter entre 20 e 60 caracteres</div>
+                                                    <div class="escondido">Insira uma URL válida</div>
                                                   </ul>
                                                   <span>Respostas incorretas</span>
                                                   <ul>
@@ -93,7 +93,7 @@ function criarPerguntas(){
                                                       <li><input type="text" placeholder="URL da imagem 2"></li>
                                                       <li><input type="text" placeholder="Resposta incorreta 3"></li>
                                                       <li><input type="text" placeholder="URL da imagem 3"></li>
-                                                      <div class="escondido">Título do quizz: deve ter entre 20 e 60 caracteres</div>
+                                                      <div class="escondido">Preencha pelo menos uma resposta incorreta</div>
                                                   </ul>               
                                               </ul>
                                             </div>`;
@@ -106,11 +106,15 @@ function criarPerguntas(){
                                               </div>
                                               <ul class="pergunta escondido">
                                                   <li><input type="text" placeholder="Texto da pergunta"></li>
+                                                  <div class="escondido">Texto da pergunta: no mínimo 20 caracteres</div>
                                                   <li><input type="text" placeholder="Cor de fundo da pergunta"></li>
+                                                  <div class="escondido">Cor em hexadecimal (começar em "#", seguida de 6 caracteres, números ou letras de A a F)</div>
                                                   <span>Resposta correta</span>
                                                   <ul>
                                                     <li><input type="text" placeholder="Resposta correta"></li>
+                                                    <div class="escondido">Texto da resposta correta não pode estar vazio</div>
                                                     <li><input type="text" placeholder="URL da imagem"></li>
+                                                    <div class="escondido">Insira uma URL válida</div>
                                                   </ul>
                                                   <span>Respostas incorretas</span>
                                                   <ul>
@@ -120,6 +124,7 @@ function criarPerguntas(){
                                                       <li><input type="text" placeholder="URL da imagem 2"></li>
                                                       <li><input type="text" placeholder="Resposta incorreta 3"></li>
                                                       <li><input type="text" placeholder="URL da imagem 3"></li>
+                                                      <div class="escondido">Preencha pelo menos uma resposta incorreta</div>
                                                   </ul>               
                                               </ul>
                                             </div>`;
@@ -224,9 +229,13 @@ function criarNiveis(){
                                       </div>
                                       <ul class="nivel">
                                         <li><input type="text" placeholder="Título do nível"></li>
+                                        <div class="escondido">Título do nível: mínimo de 10 caracteres</div>
                                         <li><input type="number" placeholder="% de acerto mínima"></li>
+                                        <div class="escondido">% de acerto mínima: um número entre 0 e 100</div>
                                         <li><input type="text" placeholder="URL da imagem do nível"></li>
+                                        <div class="escondido">URL da imagem do nível: deve ter formato de URL</div>
                                         <li><textarea rows="4" cols="30" placeholder="Descrição do nível"></textarea></li>
+                                        <div class="escondido">Descrição do nível: mínimo de 30 caracteres</div>
                                       </ul>
                                     </div>`;
       } else {
@@ -237,9 +246,13 @@ function criarNiveis(){
                                       </div>
                                       <ul class="nivel escondido">
                                         <li><input type="text" placeholder="Título do nível"></li>
+                                        <div class="escondido">Título do nível: mínimo de 10 caracteres</div>
                                         <li><input type="number" placeholder="% de acerto mínima"></li>
+                                        <div class="escondido">% de acerto mínima: um número entre 0 e 100</div>
                                         <li><input type="text" placeholder="URL da imagem do nível"></li>
+                                        <div class="escondido">URL da imagem do nível: deve ter formato de URL</div>
                                         <li><textarea rows="4" cols="30" placeholder="Descrição do nível"></textarea></li>
+                                        <div class="escondido">Descrição do nível: mínimo de 30 caracteres</div>
                                       </ul>
                                     </div>`;
       }
@@ -265,58 +278,79 @@ function criarNiveis(){
       }
     }
   } else {
-    /* alert("Preencha os campos corretamente. Tente:\n   Texto das perguntas: caracteres > 19" + 
-    "\n   Cor de fundo: valor hexadecimal (6 dígitos)"
-    + "\n   Texto das respostas: caracteres > 0\n   URL da imagem: válida" + 
-    "\n   *Todas as perguntas devem ser preenchidas.\n   *Uma resposta correta e pelo menos uma incorreta são obrigatórias."); */
-      const seletorAlertas = document.querySelectorAll(".pergunta div");
       const seletorPerguntas = document.querySelectorAll(".pergunta");
-      //let seletorInputs = seletorPergunta[i].querySelectorAll("input");
 
-      let caracteresDaPergunta = seletorInputs[0].value.length > 19;
-      let hexCorDeFundo = isValidHex(seletorInputs[1].value);
-      let respostaCorretaPreenchida = seletorInputs[2].value.trim().length !== 0;
-      let respostaCorretaURLPreenchida = validURL(seletorInputs[3].value);
-      if(!caracteresDaPergunta){
-        seletorInputs[0].classList.add("invalido");
-        seletorAlertas[0].classList.remove("escondido");
-      } else {
-        seletorInputs[0].classList.remove("invalido");
-        seletorAlertas[0].classList.add("escondido");
-      }
-      if(!hexCorDeFundo){
-        seletorInputs[1].classList.add("invalido");
-        seletorAlertas[1].classList.remove("escondido");
-      } else {
-        seletorInputs[1].classList.remove("invalido");
-        seletorAlertas[1].classList.add("escondido");
-      }
-      if(!quantidadeValidaPerguntas){
-        seletorInputs[2].classList.add("invalido");
-        seletorAlertas[2].classList.remove("escondido");
-      } else {
-        seletorInputs[2].classList.remove("invalido");
-        seletorAlertas[2].classList.add("escondido");
-      }
-      if(!quantidadeValidaNiveis){
+      for(let i = 0; i < seletorPerguntas.length; i++){
+        const seletorInputs = seletorPerguntas[i].querySelectorAll("input");
+        const seletorAlertas = seletorPerguntas[i].querySelectorAll("div");
+
+        console.log("Inputs", seletorInputs); 
+        console.log("Alertas", seletorAlertas);
+        let caracteresDaPergunta = seletorInputs[0].value.length > 19;
+        let hexCorDeFundo = isValidHex(seletorInputs[1].value);
+        let respostaCorretaPreenchida = seletorInputs[2].value.trim().length !== 0;
+        let respostaCorretaURLPreenchida = validURL(seletorInputs[3].value);
+
+        let peloMenosUmaIncorreta = seletorInputs[4].value.trim().length !== 0 && validURL(seletorInputs[5].value) ||
+                                seletorInputs[6].value.trim().length !== 0 && validURL(seletorInputs[6].value) ||
+                                seletorInputs[7].value.trim().length !== 0 && validURL(seletorInputs[8].value);
+
+        if(!caracteresDaPergunta){
+          seletorInputs[0].classList.add("invalido");
+          seletorAlertas[0].classList.remove("escondido");
+        } else {
+          seletorInputs[0].classList.remove("invalido");
+          seletorAlertas[0].classList.add("escondido");
+        }
+        if(!hexCorDeFundo){
+          seletorInputs[1].classList.add("invalido");
+          seletorAlertas[1].classList.remove("escondido");
+        } else {
+          seletorInputs[1].classList.remove("invalido");
+          seletorAlertas[1].classList.add("escondido");
+        }
+        if(!respostaCorretaPreenchida){
+          seletorInputs[2].classList.add("invalido");
+          seletorAlertas[2].classList.remove("escondido");
+        } else {
+          seletorInputs[2].classList.remove("invalido");
+          seletorAlertas[2].classList.add("escondido");
+        }
+      if(!respostaCorretaURLPreenchida){
         seletorInputs[3].classList.add("invalido");
         seletorAlertas[3].classList.remove("escondido");
       } else {
         seletorInputs[3].classList.remove("invalido");
         seletorAlertas[3].classList.add("escondido");
       }
+      if(!peloMenosUmaIncorreta){
+        seletorInputs[4].classList.add("invalido");
+        seletorInputs[5].classList.add("invalido");
+        seletorInputs[6].classList.add("invalido");
+        seletorInputs[7].classList.add("invalido");
+        seletorInputs[8].classList.add("invalido");
+        seletorInputs[9].classList.add("invalido");
+        seletorAlertas[4].classList.remove("escondido");
+      }else {
+        seletorInputs[4].classList.remove("invalido");
+        seletorInputs[5].classList.remove("invalido");
+        seletorInputs[6].classList.remove("invalido");
+        seletorInputs[7].classList.remove("invalido");
+        seletorInputs[8].classList.remove("invalido");
+        seletorInputs[9].classList.remove("invalido");
+        seletorAlertas[4].classList.add("escondido");
+      }
+
+    } 
   }   
 }
 function isValidHex(color) {
     if(!color || typeof color !== 'string') return false;
 
-    // Validate hex values
     if(color.substring(0, 1) === '#') color = color.substring(1);
 
     switch(color.length) {
-      case 3: return /^[0-9A-F]{3}$/i.test(color);
       case 6: return /^[0-9A-F]{6}$/i.test(color);
-      case 8: return /^[0-9A-F]{8}$/i.test(color);
       default: return false;
     }
   }
@@ -371,9 +405,45 @@ function finalizarQuizz(){
     promessa.catch(processarFalhaResposta);
     elementoCarregando.classList.remove("escondido");
   } else {
-    alert("Preencha os campos corretamente. Tente:\n   Título: caracteres > 9  \n   % de acertos: valor entre 0 e 100"
-    + "\n   URL da imagem: válida\n   Descrição: caracteres > 29   \n   *Todos os níveis devem ser preenchidos." +
-    "\n   *Em pelo menos um dos níveis, a % de acertos deve ser igual a 0.");
+    
+    for(let i = 0; i < seletorTodosNiveis.length; i++){
+      const seletorInputs = seletorTodosNiveis[i].querySelectorAll("li > *");
+      const seletorAlertas = seletorTodosNiveis[i].querySelectorAll("div");
+      const caracteresDoTitulo = seletorInputs[0].value.length > 9;
+      const numeroDeAcertos = seletorInputs[1].value.trim().length > 0 && seletorInputs[1].value >= 0 &&
+      seletorInputs[1].value < 101;
+      const formatoURL = validURL(seletorInputs[2].value);
+      const descricaoValida = seletorInputs[3].value.length > 29;
+
+      if(!caracteresDoTitulo){
+        seletorInputs[0].classList.add("invalido");
+        seletorAlertas[0].classList.remove("escondido");
+      } else {
+        seletorInputs[0].classList.remove("invalido");
+        seletorAlertas[0].classList.add("escondido");
+      }
+      if(!numeroDeAcertos){
+        seletorInputs[1].classList.add("invalido");
+        seletorAlertas[1].classList.remove("escondido");
+      } else {
+        seletorInputs[1].classList.remove("invalido");
+        seletorAlertas[1].classList.add("escondido");
+      }
+      if(!formatoURL){
+        seletorInputs[2].classList.add("invalido");
+        seletorAlertas[2].classList.remove("escondido");
+      } else {
+        seletorInputs[2].classList.remove("invalido");
+        seletorAlertas[2].classList.add("escondido");
+      }
+      if(!descricaoValida){
+        seletorInputs[3].classList.add("invalido");
+        seletorAlertas[3].classList.remove("escondido");
+      } else {
+        seletorInputs[3].classList.remove("invalido");
+        seletorAlertas[3].classList.add("escondido");
+      }
+    }
   }   
 }
 function processarResposta(resposta){
